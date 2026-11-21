@@ -9,20 +9,28 @@
       "sha256": "2ff11ca23db701a9718a376fe1aeed97f57579583e065235409494be2802b8ab"
     },
     {
+      "path": "DESIGN.md",
+      "sha256": "e8dc22d2a2c74e3e0b1ad834d5b0493933e981158ea6df03519e552ea4431e5a"
+    },
+    {
       "path": "LICENSE",
       "sha256": "8ee98a68db08740852b491de91922961bb928aaa13f9897c078a0e6eb3e1218a"
     },
     {
+      "path": "PRODUCT.md",
+      "sha256": "120f5d32d9b2b095aeb4e7e73b6db2d3e511b6ac8f0bf2acecca38708a5b33f3"
+    },
+    {
       "path": "README.es.md",
-      "sha256": "40d0cf994cc55dfcfdab71abaa02039438886b3f6815fca175b5438878e74f29"
+      "sha256": "a99872d4fe7d07b8733a913e398c31135f011cd8b03e6c8a58c9c037baff3216"
     },
     {
       "path": "README.md",
-      "sha256": "56e5107ce1a7e08161bbc40ed483f4172d91aa2d23b00e348844f22b3f918fde"
+      "sha256": "e37d521b5001f9b209c22e093d369d5fa7e7657a948a9b28c5dbe3379229682c"
     },
     {
       "path": "THIRD_PARTY.md",
-      "sha256": "55b6d1187d61ccdfc3d44d3199fbeeaba6126e70f086676c3771ed65002ee6f8"
+      "sha256": "8f7481531ee8b35ff9ecccf619ef6616b7b74c85dc719f807b50d3622006a8a3"
     },
     {
       "path": "app/build.gradle.kts",
@@ -33,12 +41,20 @@
       "sha256": "b451ef03b1abbc77275448508bdf8426f8ac3cc3d1e6c5f8a64414ae7eb1e716"
     },
     {
+      "path": "app/src/androidTest/java/dev/navalcode/shelf/presentation/NativeCapture.kt",
+      "sha256": "b0ddc145ab60678632af17e1cd11b96b634b26ce3ac93c6d4b0fd05af2131630"
+    },
+    {
       "path": "app/src/androidTest/java/dev/navalcode/shelf/presentation/ShelfJourneyTest.kt",
-      "sha256": "674d4f51cb8e7142fae08591cf2b732720fd965a00d0d749f8f25deb048abf22"
+      "sha256": "e782d14b3e0da3b833845fd5798fc806dfe320e338a595d079eaffe09020a49d"
     },
     {
       "path": "app/src/main/AndroidManifest.xml",
       "sha256": "d9d3e05ecbdc7fdd8afc13769010699040f51ebe1f6ee44260b26402e1716615"
+    },
+    {
+      "path": "app/src/main/assets/licenses/Manrope-OFL.txt",
+      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
     },
     {
       "path": "app/src/main/java/dev/navalcode/shelf/MainActivity.kt",
@@ -49,24 +65,76 @@
       "sha256": "b02c94d2a33ccc80320358096e047ca99fb6b6c86ba1d33cd4312af291583d85"
     },
     {
+      "path": "app/src/main/java/dev/navalcode/shelf/presentation/BookIdentity.kt",
+      "sha256": "9695744d33bc24b7712a3e9e879b12e128c558b362ef5c26639a98992bb74b53"
+    },
+    {
+      "path": "app/src/main/java/dev/navalcode/shelf/presentation/DetailScreen.kt",
+      "sha256": "e53a7084fe2d5e74d1fbeb33797c10f7697a3a0b3cbdb67826960fec2bbefcdc"
+    },
+    {
+      "path": "app/src/main/java/dev/navalcode/shelf/presentation/Motion.kt",
+      "sha256": "fd45c2949999819a91354a7440f42502e64a989d727e95aee798e64079fca82b"
+    },
+    {
+      "path": "app/src/main/java/dev/navalcode/shelf/presentation/SearchScreen.kt",
+      "sha256": "b29f9cca6fa98bfe0d2c90404f33a760fe4613663221e0dc66199aa6c25b45bd"
+    },
+    {
       "path": "app/src/main/java/dev/navalcode/shelf/presentation/SearchViewModel.kt",
       "sha256": "50db46d45091dd3685d74887197b0af8cddeba8784b0295083aeb46b3e82ccf8"
     },
     {
       "path": "app/src/main/java/dev/navalcode/shelf/presentation/ShelfApp.kt",
-      "sha256": "38e64589ac17a931ef26ea264f1dac3b5fbf6ec98fa550882cb84cfb4dda08a0"
+      "sha256": "bd501e792233508209e678578ffc3fcf8e62210a08e6e96fb1f156e2e012cb4f"
+    },
+    {
+      "path": "app/src/main/java/dev/navalcode/shelf/presentation/Theme.kt",
+      "sha256": "1b973eab9003083ec38aebf9ee5154088476eed900ef980d37b9c473ebe10fac"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_back.xml",
+      "sha256": "6ef3d34e909cbc0b95e95c6d438d636733d5ced24c098b128bfab3d4ccf5580f"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_clear.xml",
+      "sha256": "2bd588ee793765b2a888fd6f7a0c5454d9015d2b6be958ee915dc219a5b77ee3"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_forward.xml",
+      "sha256": "07c879e4ba87f5203e2c754075d3399cafffc7682510ad2049461fd60065fdf0"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_search.xml",
+      "sha256": "b647dfef8e46133a11f9c9725e9951837d314aad6498be21b31837bed84ffd31"
     },
     {
       "path": "app/src/main/res/drawable/ic_shelf.xml",
-      "sha256": "48e2898f301c3c6f95ad108cf7f646416cff09c057b2499be2afabd65484bf00"
+      "sha256": "971647be60085b584241151032ed6a56563e94d2a20ede34484458e7e7307f79"
+    },
+    {
+      "path": "app/src/main/res/font/manrope_bold.ttf",
+      "sha256": "26f2cfb06c67e1854612b097c27e2b0261623c0ca49944487cf43186c6350c37"
+    },
+    {
+      "path": "app/src/main/res/font/manrope_medium.ttf",
+      "sha256": "aa40f97c535fc87df90be047d863baaaacd63b69374022a21e136a3281f853ce"
+    },
+    {
+      "path": "app/src/main/res/font/manrope_regular.ttf",
+      "sha256": "d77fe58ace35d06ed0bb09dd6524c38641bef74b70eb169e7dbac6e9474007db"
+    },
+    {
+      "path": "app/src/main/res/font/manrope_semibold.ttf",
+      "sha256": "1787b793a91e27bbb40d8c38ba2c87f3091b4bb67d3a4868240b6f9a0039f38b"
     },
     {
       "path": "app/src/main/res/values-es/strings.xml",
-      "sha256": "b4126ee990dd3473e308fda7bd3c83063b1905cde51c16173ba9a556b0c9ad26"
+      "sha256": "92d276d65980cc5dd98d55d9fdeaf538cf10155570f7f1033575636ec381f2e9"
     },
     {
       "path": "app/src/main/res/values/strings.xml",
-      "sha256": "6d180cac4dafbd2456e5c0a419e94d1a17240453b8221020f8e8ed1328ffe36c"
+      "sha256": "c64fb47e0f6535a6d87cc6ab1b5a659f964f76a479a12dd7440e66d0f9575229"
     },
     {
       "path": "app/src/main/res/values/themes.xml",
@@ -102,15 +170,35 @@
     },
     {
       "path": "docs/ARCHITECTURE.md",
-      "sha256": "0ac486f057cc2917872e1c4c2c668cb711a90df80d94c39ce5644df15b52c2da"
+      "sha256": "0507f798a7d27605d5bf87c70b1507ab4fd3795d17b372e198fcf44dd8cd7abe"
     },
     {
       "path": "docs/SPEC.md",
-      "sha256": "39aea0ad7a67f1c8bd1899438dea1656fcd206c3dc13c08ddeb3083b7059b193"
+      "sha256": "83806fda207906437fc64f3f8cfb45900cf0839540745faebd90976c981512ac"
     },
     {
       "path": "docs/VERIFICATION.md",
-      "sha256": "a81f938e7d6db1fa8a8380abfe37f9fe625b1844e37a7b663c41ded5c618f749"
+      "sha256": "67a363e1bfe3705834608c9386439c6fa33b2b829dc1dc6367c7d909bf02440e"
+    },
+    {
+      "path": "docs/images/PROVENANCE.json",
+      "sha256": "a52e5c551e35283a932a4249abff4138c875df0a876e150a1c7679bb6363de5a"
+    },
+    {
+      "path": "docs/images/detail.png",
+      "sha256": "36045fa7e833c0c24388a9fc3c528774bdf99764f940e9637fde5e8b2385bcc7"
+    },
+    {
+      "path": "docs/images/es-dark-large.png",
+      "sha256": "5999b80bd28adc742642910e6023f4bfaed6d1801de7741834095e7135812bce"
+    },
+    {
+      "path": "docs/images/navigation.gif",
+      "sha256": "b96819515da172bbd8f8917dad93b725179f8280c347cc7b9edb7bb98d86cd95"
+    },
+    {
+      "path": "docs/images/search.png",
+      "sha256": "ac93802fa424598544612bb1f4d31cb7bfce57309e506814ffc685ce3a219298"
     },
     {
       "path": "domain/build.gradle.kts",

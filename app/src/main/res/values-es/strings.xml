@@ -1,12 +1,10 @@
 <resources>
     <string name="app_name">Shelf</string>
-    <string name="eyebrow">EL CATÁLOGO DE OPEN LIBRARY</string>
-    <string name="headline">Encuentra tu próxima lectura.</string>
-    <string name="intro">Busca libros por título, autor o tema.</string>
+    <string name="headline">Tu próxima lectura.</string>
+    <string name="intro">Encuentra un libro por título, autor o tema.</string>
     <string name="query_label">Buscar libros</string>
     <string name="clear">Borrar</string>
-    <string name="initial_title">Toda una biblioteca por descubrir.</string>
-    <string name="initial_body">Prueba con tu autor favorito, un lugar o ese libro que tienes pendiente.</string>
+    <string name="initial_body">Elige por dónde empezar o escribe tu propia búsqueda.</string>
     <string name="loading">Buscando en Open Library…</string>
     <string name="empty_title">No encontramos libros</string>
     <string name="empty_body">Prueba con otro título, autor o tema.</string>
@@ -17,16 +15,17 @@
     <string name="query_error">Escribe una búsqueda de hasta 120 caracteres.</string>
     <string name="retry">Reintentar</string>
     <string name="back">Volver a buscar</string>
-    <string name="results_network">Resultados · Open Library</string>
-    <string name="results_cache">Resultados · Desde caché en memoria</string>
+    <string name="results_network">Resultados</string>
+    <string name="results_cache">Resultados recientes</string>
     <string name="results_limit">Hasta 20 obras coincidentes. Datos de Open Library.</string>
     <string name="unknown_author">Autoría desconocida</string>
     <string name="unknown">No disponible</string>
-    <string name="author">Autoría</string>
     <string name="year">Primera publicación</string>
     <string name="editions">Ediciones en el catálogo</string>
     <string name="identifier">ID de Open Library</string>
-    <string name="catalogue_record">FICHA DEL CATÁLOGO</string>
     <string name="detail_note">Metadatos bibliográficos de Open Library. Algunos campos pueden estar incompletos.</string>
     <string name="missing_detail">Este libro no está disponible. Vuelve a buscar.</string>
+    <string name="suggestions">Empieza por un nombre o una historia</string>
+    <string name="detail_title">El libro</string>
+    <string name="about_work">Sobre esta obra</string>
 </resources>

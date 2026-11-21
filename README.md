@@ -2,7 +2,11 @@
 
 A small Kotlin / Jetpack Compose app by Manuel Naval. Search the real [Open Library API](https://openlibrary.org/dev/docs/api/search), open a book and inspect its author, first publication, edition count and catalogue ID.
 
-[Español](README.es.md) · [Architecture and review guide](docs/ARCHITECTURE.md) · [Verification](docs/VERIFICATION.md) · [CI](https://github.com/navalcode/shelf-android/actions/workflows/checks.yml)
+[Español](README.es.md) · [Architecture and review guide](docs/ARCHITECTURE.md) · [Verification](docs/VERIFICATION.md) · [Design system](DESIGN.md) · [CI](https://github.com/navalcode/shelf-android/actions/workflows/checks.yml)
+
+<p><img src="docs/images/search.png" width="250" alt="Shelf showing a real Open Library search" /> <img src="docs/images/navigation.gif" width="250" alt="Native title transition between search and detail using a fictional test book" /></p>
+
+Live API search (left); native test-clock navigation with a fictional book (right). [Image provenance](docs/images/PROVENANCE.json).
 
 ## Run
 
@@ -25,7 +29,7 @@ The debug APK is `app/build/outputs/apk/debug/app-debug.apk`. The release bundle
 - **API courtesy:** explicit fields, at most 20 works, at least 1.1 s between request starts, 20 s call timeout and no automatic retry. A project User-Agent is supplied; the app uses the conservative default rate, without claiming identified-client privileges. See [API guidance](https://openlibrary.org/developers/api). Searches are sent to Open Library; there is no analytics or query logging in the app.
 - **State:** query and a small detail snapshot use SavedStateHandle. Rotation preserves the ViewModel; Android task restoration can restore those values. A force-stop/new task does not promise restoration. Detail uses the selected result without a second request. Missing metadata is labelled, never invented.
 
-The UI has Spanish resources, English fallback, system dark mode, scalable text and explicit loading/empty/error/retry states. Scope stays focused on search and detail.
+The UI has local Manrope typography, Spanish resources, English fallback, system dark mode and scalable text. A single book identity travels between the open index and its reading sheet; Android’s animation preferences are observed explicitly. Loading, empty, error and retry remain visible and functional. [Acceptance contract](docs/SPEC.md).
 
 ## Tests and license
 

@@ -18,3 +18,7 @@ Original implementation plan. Keep the scope to two screens and a public bibliog
 Domain tests use in-code repository doubles. Data HTTP tests use MockWebServer; no external API is involved in deterministic CI. Presentation uses virtual time. Native screenshots use an original fictional book fixture, not a fabricated live service result.
 
 Known limits: single UI consumer (no shared in-flight request coalescing), no pagination, memory cache lost on process death, no physical-device/TalkBack/store or performance claims. See VERIFICATION for actually executed checks.
+
+## Visual and motion acceptance
+
+Material affordances, local licensed typography, explicit state recovery and ES/EN resources stay functional at enlarged text. A selected identity is rendered once during navigation, without incompatible line-break crossfades; error/empty states do not retain prior results. Android animation preferences remove spatial transition and metadata delay even under the test clock. Four native journeys cover the user paths; optional deterministic frame capture makes the motion evidence repeatable. DESIGN.md records actual tokens after implementation, not a speculative mockup.

@@ -2,7 +2,11 @@
 
 Aplicación pequeña en Kotlin / Jetpack Compose de Manuel Naval. Busca contra la [API real de Open Library](https://openlibrary.org/dev/docs/api/search) y abre una ficha con autoría, primera publicación, ediciones e identificador.
 
-[English](README.md) · [Arquitectura y guía de revisión](docs/ARCHITECTURE.md) · [Verificación](docs/VERIFICATION.md) · [CI](https://github.com/navalcode/shelf-android/actions/workflows/checks.yml)
+[English](README.md) · [Arquitectura y guía de revisión](docs/ARCHITECTURE.md) · [Verificación](docs/VERIFICATION.md) · [Sistema de diseño](DESIGN.md) · [CI](https://github.com/navalcode/shelf-android/actions/workflows/checks.yml)
+
+<p><img src="docs/images/search.png" width="250" alt="Shelf con una búsqueda real de Open Library" /> <img src="docs/images/navigation.gif" width="250" alt="Transición nativa entre búsqueda y detalle con un libro ficticio de pruebas" /></p>
+
+Búsqueda real (izquierda); navegación con reloj de pruebas nativo y libro ficticio (derecha). [Procedencia de imágenes](docs/images/PROVENANCE.json).
 
 ## Ejecutar
 
@@ -25,7 +29,7 @@ APK debug: `app/build/outputs/apk/debug/app-debug.apk`. El bundle release no tie
 - **Uso de API:** campos explícitos, hasta 20 obras, al menos 1,1 s entre inicios de petición, timeout de 20 s y sin reintentos automáticos. User-Agent del proyecto y límite conservador por defecto, sin atribuir privilegios de cliente identificado. [Guía del servicio](https://openlibrary.org/developers/api). Las consultas se envían a Open Library; la app no incluye analítica ni registro de búsquedas.
 - **Estado:** consulta y pequeño snapshot del detalle en SavedStateHandle. Rotar conserva ViewModel; restaurar una tarea puede recuperar esos valores. No se garantiza force-stop/tarea nueva. Detalle sin petición adicional y campos ausentes declarados.
 
-Recursos españoles con fallback inglés, modo oscuro del sistema, texto escalable y estados de carga/vacío/error/reintento. Alcance centrado en búsqueda y detalle.
+Tipografía Manrope local, recursos españoles con fallback inglés, modo oscuro y texto escalable. Una sola identidad del libro conecta índice y ficha; las preferencias de animación de Android se observan explícitamente. Carga, vacío, error y reintento siguen siendo claros y funcionales. [Contrato de aceptación](docs/SPEC.md).
 
 ## Pruebas y licencia
 

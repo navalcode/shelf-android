@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-21",
+  "assets": [
+    {
+      "path": "search.png",
+      "origin": "Unedited native production app, live Open Library query Dune, English/light/font1.0, 360x640dp.",
+      "platform": "Android17/API37 own emulator; not physical hardware",
+      "sha256": "ac93802fa424598544612bb1f4d31cb7bfce57309e506814ffc685ce3a219298"
+    },
+    {
+      "path": "detail.png",
+      "origin": "Unedited native production app, live Open Library Dune detail, English/light/font1.0, 360x640dp.",
+      "platform": "Android17/API37 own emulator; not physical hardware",
+      "sha256": "36045fa7e833c0c24388a9fc3c528774bdf99764f940e9637fde5e8b2385bcc7"
+    },
+    {
+      "path": "es-dark-large.png",
+      "origin": "Unedited native Compose test activity, Spanish/dark/font1.8, 360x640dp, initial query suggestions; no synthetic catalogue shown.",
+      "platform": "Android17/API37 own emulator; not physical hardware",
+      "sha256": "5999b80bd28adc742642910e6023f4bfaed6d1801de7741834095e7135812bce"
+    },
+    {
+      "path": "navigation.gif",
+      "origin": "Derived only from unedited native Compose test-clock frames at 0/16/80/160/240/400 ms for entrance and return. Original fictional book The Glass Orchard by Alex Rivera; not a live API result. Resized to 360x640 and held at endpoints for reading; intermediate durations follow sample intervals. Not a hardware FPS or real-time recording claim.",
+      "source": "app/src/androidTest/java/dev/navalcode/shelf/presentation/ShelfJourneyTest.kt and NativeCapture.kt; motionCapture=true",
+      "sha256": "b96819515da172bbd8f8917dad93b725179f8280c347cc7b9edb7bb98d86cd95"
+    }
+  ],
+  "note": "No image generation, fabricated covers or image-content retouching. Original application typography/icons retain their own notices."
+}

@@ -1,12 +1,10 @@
 <resources>
     <string name="app_name">Shelf</string>
-    <string name="eyebrow">THE OPEN LIBRARY CATALOGUE</string>
-    <string name="headline">Find your next chapter.</string>
-    <string name="intro">Search books by title, author or subject.</string>
+    <string name="headline">Your next read.</string>
+    <string name="intro">Find a book by title, author or subject.</string>
     <string name="query_label">Search books</string>
     <string name="clear">Clear</string>
-    <string name="initial_title">A whole library, one search away.</string>
-    <string name="initial_body">Try a favourite author, a place or a book you have been meaning to read.</string>
+    <string name="initial_body">Pick a starting point, or search for something of your own.</string>
     <string name="loading">Searching Open Library…</string>
     <string name="empty_title">No books found</string>
     <string name="empty_body">Try a different title, author or subject.</string>
@@ -17,16 +15,17 @@
     <string name="query_error">Use a search of up to 120 characters.</string>
     <string name="retry">Try again</string>
     <string name="back">Back to search</string>
-    <string name="results_network">Results · Open Library</string>
-    <string name="results_cache">Results · From memory cache</string>
+    <string name="results_network">Results</string>
+    <string name="results_cache">Recent results</string>
     <string name="results_limit">Up to 20 matching works. Data from Open Library.</string>
     <string name="unknown_author">Unknown author</string>
     <string name="unknown">Not available</string>
-    <string name="author">Author</string>
     <string name="year">First published</string>
     <string name="editions">Editions in catalogue</string>
     <string name="identifier">Open Library ID</string>
-    <string name="catalogue_record">CATALOGUE RECORD</string>
     <string name="detail_note">Bibliographic metadata from Open Library. Some fields may be incomplete.</string>
     <string name="missing_detail">This book is unavailable. Return to search.</string>
+    <string name="suggestions">Start with a name or a story</string>
+    <string name="detail_title">The book</string>
+    <string name="about_work">About this work</string>
 </resources>

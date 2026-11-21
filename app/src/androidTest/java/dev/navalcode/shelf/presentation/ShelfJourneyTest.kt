@@ -1,10 +1,10 @@
 package dev.navalcode.shelf.presentation
 
 import androidx.activity.ComponentActivity
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.ui.test.*
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.espresso.Espresso.closeSoftKeyboard
-import android.os.ParcelFileDescriptor
+import androidx.test.espresso.Espresso.pressBack
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -19,21 +19,14 @@ class ShelfJourneyTest {
     @get:Rule val rule = createAndroidComposeRule<ComponentActivity>()
     private val book = Book("/works/OL1W", "The Glass Orchard", listOf("Alex Rivera"), 2001, 7)
     private lateinit var model: SearchViewModel
-    private fun capture(name: String) {
-        // Gradle uninstalls the target after tests: shell-owned output survives cleanup.
-        require(name in setOf("search", "detail"))
-        val automation = InstrumentationRegistry.getInstrumentation().uiAutomation
-        for (command in listOf("mkdir -p /sdcard/Download/shelf-test-output",
-            "screencap -p /sdcard/Download/shelf-test-output/$name.png")) {
-            ParcelFileDescriptor.AutoCloseInputStream(automation.executeShellCommand(command)).use { it.readBytes() }
-        }
-    }
+    private val captures = NativeCapture(rule)
     private fun awaitResults() {
         rule.waitUntil(5_000) { model.state.value.content is SearchContent.Results }
         closeSoftKeyboard()
         rule.onNodeWithTag("search_screen").performScrollToNode(hasTestTag("book_/works/OL1W"))
     }
     private fun start(repository: BookRepository) {
+        rule.runOnUiThread { rule.activity.enableEdgeToEdge() }
         rule.setContent {
             model = viewModel(factory = viewModelFactory {
                 initializer { SearchViewModel(SearchBooks(repository), SavedStateHandle()) }
@@ -43,16 +36,17 @@ class ShelfJourneyTest {
     }
     @Test fun searchDetailAndBackPreserveQuery() {
         start { SearchResult(listOf(book), ResultSource.NETWORK) }
+        captures.frame("idle")
         rule.onNodeWithTag("search_input").performTextInput("orchard")
         awaitResults()
-        capture("search")
-        rule.onNodeWithTag("book_/works/OL1W").performClick()
+        captures.frame("search")
+        captures.transition("motion") { rule.onNodeWithTag("book_/works/OL1W").performClick() }
         rule.onNodeWithTag("detail_screen").assertExists()
         rule.onNodeWithText("Alex Rivera").assertExists()
         rule.onNodeWithText("2001").assertExists()
         rule.onNodeWithText("7").assertExists()
-        capture("detail")
-        rule.onNodeWithTag("back").performClick()
+        captures.frame("detail")
+        captures.transition("return") { rule.onNodeWithTag("back").performClick() }
         rule.onNodeWithTag("search_screen").performScrollToNode(hasTestTag("search_input"))
         rule.onNodeWithTag("search_input").assertTextContains("orchard")
         rule.onNodeWithTag("book_/works/OL1W").assertExists()
@@ -64,10 +58,11 @@ class ShelfJourneyTest {
         rule.waitUntil(5_000) { model.state.value.content is SearchContent.Failed }
         closeSoftKeyboard()
         rule.onNodeWithTag("search_screen").performScrollToNode(hasTestTag("retry"))
+        captures.frame("error")
         rule.onNodeWithTag("retry").performClick()
         awaitResults()
         rule.onNodeWithTag("search_screen").performScrollToNode(hasTestTag("search_input"))
-        rule.onNodeWithTag("search_input").performTextClearance()
+        rule.onNodeWithTag("clear_search").performClick()
         rule.onNodeWithTag("book_/works/OL1W").assertDoesNotExist()
     }
     @Test fun emptySearchDoesNotRenderOldItems() {
@@ -83,5 +78,20 @@ class ShelfJourneyTest {
         closeSoftKeyboard()
         rule.onNodeWithTag("search_screen").performScrollToNode(hasTestTag("empty_state"))
         rule.onNodeWithTag("empty_state").assertIsDisplayed()
+        captures.frame("empty")
     }
+    @Test fun suggestionSearchAndSystemBackKeepContext() {
+        var requested = ""
+        start { requested = it; SearchResult(listOf(book), ResultSource.NETWORK) }
+        rule.onNodeWithTag("search_screen").performScrollToNode(hasText("Dune"))
+        rule.onNodeWithText("Dune").performClick()
+        awaitResults()
+        org.junit.Assert.assertEquals("dune", requested)
+        rule.onNodeWithTag("book_/works/OL1W").performClick()
+        rule.onNodeWithTag("detail_screen").assertExists()
+        pressBack()
+        rule.onNodeWithTag("search_screen").performScrollToNode(hasTestTag("search_input"))
+        rule.onNodeWithTag("search_input").assertTextContains("Dune")
+    }
+
 }
