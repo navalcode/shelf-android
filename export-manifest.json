@@ -202,7 +202,7 @@
     },
     {
       "path": "docs/RUNTIME_VALIDATION.md",
-      "sha256": "ec2ac66705f8377739cb8335f3b5d64801be8dcf5f527d3f7d3398926a9ed1a5"
+      "sha256": "1d3181de2704cc1044f493de83a0ed30103666d547324c0ee2ef2e6042764f9c"
     },
     {
       "path": "docs/SPEC.md",
@@ -210,7 +210,7 @@
     },
     {
       "path": "docs/VERIFICATION.md",
-      "sha256": "b8084523516dd90e58e9d3b0f0acce6a958a9e04d73ee7a6c6093803abdf865d"
+      "sha256": "d091e51a4dcf2829d8080456630a5ed6ecfac4dd418e62dade5644d056bf482d"
     },
     {
       "path": "docs/evidence/emulator-frame-metrics.json",

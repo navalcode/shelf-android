@@ -1,6 +1,6 @@
 # Optimized runtime and native frame validation
 
-The readability follow-up keeps the same product behavior and UI geometry. Kotlin/Gradle use hash-pinned ktfmt; the dependency graph has named construction steps, and the ViewModel's error mapper is a separate readable function. No application framework or runtime dependency was added.
+Kotlin/Gradle use hash-pinned ktfmt; the dependency graph has named construction steps, and the ViewModel's error mapper is a separate readable function. No application framework or runtime dependency was added.
 
 ## Executed emulator route
 

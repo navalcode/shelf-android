@@ -18,7 +18,7 @@
 
 ## Continuous integration
 
-[Android checks](https://github.com/navalcode/shelf-android/actions/workflows/checks.yml) runs formatting, unit tests, lint, debug/release builds and native checks on API 26/API 35. A fresh run will validate the current main-branch publication; the executed source checks above precede the documentation/history cleanup.
+[Android checks](https://github.com/navalcode/shelf-android/actions/workflows/checks.yml) runs formatting, unit tests, lint, debug/release builds and native checks on API 26/API 35. [Run 44904649802](https://github.com/navalcode/shelf-android/actions/runs/44904649802) passed at attempt 1 on `f7b063d49746e21590e2d753012480b07df9881f`:32 JVM tests, six evidence-parser tests, formatting, lint/build, nine native cases and both optimized-startup checks on each API 26/API 35. Downloaded reports confirm no native failures or skips and the same optimized APK bytes across both API jobs. Subsequent documentation-only changes preserve that tested application, tests, assets and workflow.
 
 ## Rendering measurements
 
