@@ -27,15 +27,15 @@ The first release export was verified byte-for-byte against all 39 public blobs.
 
 Minimum API 26, actual process termination/restoration, physical devices, release runtime, TalkBack, production signing and store distribution have no new runtime validation here. SavedStateHandle reconstruction is tested but is not an OS process-death test. Screenshots and the GIF have [explicit provenance](images/PROVENANCE.json); the GIF uses a fictional fixture and sampled test-clock frames, not real-time hardware footage. 
 
-## Hosted result
+## Previous visual delivery · hosted result
 
 [Run 44884887236](https://github.com/navalcode/shelf-android/actions/workflows/checks.yml) completed successfully on code commit `previous source revision`: both build and device jobs passed, including all four native cases on API 35. The documentation-only commit previous source revision preserves that tested runtime, tests, dependency declarations, assets and workflow exactly. This is the previous visual delivery; the error-contract revision is recorded separately below. The earlier bootstrap and failed/superseded attempts above remain part of the record.
 
 
 ## Error-contract revision
 
-The revised local suite passes 30 JVM tests, lint, debug APK, instrumentation APK and optimized release AAB. The six native cases pass on API 37 in both English/light/font 1.0 and Spanish/dark/font 1.8 with system motion disabled. Normal-motion visual evidence above belongs to the preceding visual delivery; this revision does not change motion code. Domain error categories replace transport checks in Presentation; invalid, missing, malformed and HTTP 204 payloads are distinguished from connectivity failures. Malformed/HTTP error responses cannot seed the cache. A deliberately obsolete failure is also rejected after a newer success.
+The revised local suite passes 30 JVM tests, lint, debug APK, instrumentation APK and optimized release AAB. A fresh allowlisted export repeats those checks with all 135 tasks executed. The six native cases pass on API 37 in both English/light/font 1.0 and Spanish/dark/font 1.8 with system motion disabled. Normal-motion visual evidence above belongs to the preceding visual delivery; this revision does not change motion code. Domain error categories replace transport checks in Presentation; invalid, missing, malformed and HTTP 204 payloads are distinguished from connectivity failures. Malformed/HTTP error responses cannot seed the cache. A deliberately obsolete failure is also rejected after a newer success.
 
 The architecture guide was rendered through GitHub GFM and checked for a bounded Mermaid block, its separate following paragraph and all six following section headings. These checks verify Markdown structure; they are not a screenshot review of GitHub’s Mermaid renderer.
 
-Hosted verification for this revision is pending publication; the run above describes the preceding code, not this revision.
+[Run 44887189457](https://github.com/navalcode/shelf-android/actions/workflows/checks.yml) completed successfully on code commit `previous source revision`: build and device jobs passed. Downloaded reports confirm 30 JVM tests, lint with zero errors and all six native cases on API 35, without failed or skipped cases. The final documentation-only commit changes this verification page and the export manifest; runtime, tests, assets, dependency declarations and workflow remain byte-for-byte identical to that tested commit.
