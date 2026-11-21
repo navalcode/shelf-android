@@ -1,0 +1,156 @@
+{
+  "files": [
+    {
+      "path": ".github/workflows/checks.yml",
+      "sha256": "bf40eccdb531f87b941588a8b06012a15505d280a846ff86b399a158a87919a9"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "2ff11ca23db701a9718a376fe1aeed97f57579583e065235409494be2802b8ab"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "8ee98a68db08740852b491de91922961bb928aaa13f9897c078a0e6eb3e1218a"
+    },
+    {
+      "path": "README.es.md",
+      "sha256": "40d0cf994cc55dfcfdab71abaa02039438886b3f6815fca175b5438878e74f29"
+    },
+    {
+      "path": "README.md",
+      "sha256": "56e5107ce1a7e08161bbc40ed483f4172d91aa2d23b00e348844f22b3f918fde"
+    },
+    {
+      "path": "THIRD_PARTY.md",
+      "sha256": "55b6d1187d61ccdfc3d44d3199fbeeaba6126e70f086676c3771ed65002ee6f8"
+    },
+    {
+      "path": "app/build.gradle.kts",
+      "sha256": "673e429d6d3a843224915b9b98210359b380863b28b68b6d7511a053e1814e83"
+    },
+    {
+      "path": "app/proguard-rules.pro",
+      "sha256": "b451ef03b1abbc77275448508bdf8426f8ac3cc3d1e6c5f8a64414ae7eb1e716"
+    },
+    {
+      "path": "app/src/androidTest/java/dev/navalcode/shelf/presentation/ShelfJourneyTest.kt",
+      "sha256": "db37a70b4427973841a1aa300e47d3b543a887a0a3038a6d558718012c1b0a58"
+    },
+    {
+      "path": "app/src/main/AndroidManifest.xml",
+      "sha256": "d9d3e05ecbdc7fdd8afc13769010699040f51ebe1f6ee44260b26402e1716615"
+    },
+    {
+      "path": "app/src/main/java/dev/navalcode/shelf/MainActivity.kt",
+      "sha256": "51a2ee66ad4ec2dff06a823a09b588be3c7f5ee9c40c256660d7ce183db30639"
+    },
+    {
+      "path": "app/src/main/java/dev/navalcode/shelf/ShelfApplication.kt",
+      "sha256": "b02c94d2a33ccc80320358096e047ca99fb6b6c86ba1d33cd4312af291583d85"
+    },
+    {
+      "path": "app/src/main/java/dev/navalcode/shelf/presentation/SearchViewModel.kt",
+      "sha256": "50db46d45091dd3685d74887197b0af8cddeba8784b0295083aeb46b3e82ccf8"
+    },
+    {
+      "path": "app/src/main/java/dev/navalcode/shelf/presentation/ShelfApp.kt",
+      "sha256": "38e64589ac17a931ef26ea264f1dac3b5fbf6ec98fa550882cb84cfb4dda08a0"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_shelf.xml",
+      "sha256": "48e2898f301c3c6f95ad108cf7f646416cff09c057b2499be2afabd65484bf00"
+    },
+    {
+      "path": "app/src/main/res/values-es/strings.xml",
+      "sha256": "b4126ee990dd3473e308fda7bd3c83063b1905cde51c16173ba9a556b0c9ad26"
+    },
+    {
+      "path": "app/src/main/res/values/strings.xml",
+      "sha256": "6d180cac4dafbd2456e5c0a419e94d1a17240453b8221020f8e8ed1328ffe36c"
+    },
+    {
+      "path": "app/src/main/res/values/themes.xml",
+      "sha256": "c63ffda91202e0e8dd0537f2c915621d89dfb1e5900ebf51f5677411dc9095c9"
+    },
+    {
+      "path": "app/src/test/java/dev/navalcode/shelf/presentation/SearchViewModelTest.kt",
+      "sha256": "a30c636ea560c65844639eb7d219f3798c609d4d4da1d47a7147454f0fb19fe9"
+    },
+    {
+      "path": "build.gradle.kts",
+      "sha256": "05468ea0c94c553d6eb1765bb7867baee8acf72dc344643790c29c19d0a1e94d"
+    },
+    {
+      "path": "data/build.gradle.kts",
+      "sha256": "1993a006a1fc0a9990fc353773d5a71cff4c6e7824570cd5378c3df26dd457ae"
+    },
+    {
+      "path": "data/src/main/kotlin/dev/navalcode/shelf/data/CachedBookRepository.kt",
+      "sha256": "7e74dbe3891c0987c77c01c5bf38dbf13283f6b35993c6ffe7fb22602ad32948"
+    },
+    {
+      "path": "data/src/main/kotlin/dev/navalcode/shelf/data/OpenLibrary.kt",
+      "sha256": "a453dd000d5202675580fd60d07fcea0fa15e5f1fe034a436163e5120d61f113"
+    },
+    {
+      "path": "data/src/test/kotlin/dev/navalcode/shelf/data/CachedBookRepositoryTest.kt",
+      "sha256": "4bc9338425cee288093c544f43505c973f7e3e7b600c2af7fd8905032d684192"
+    },
+    {
+      "path": "data/src/test/kotlin/dev/navalcode/shelf/data/OpenLibraryTest.kt",
+      "sha256": "ed81c2037885372cca310a6ea4009abd06bbb2aa8ad727d51cbb54dfe2e2b65a"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "sha256": "5659c9486b8a40226e75146a14d6fa4bcf252a0091636a96a7401fbb63f450a3"
+    },
+    {
+      "path": "docs/VERIFICATION.md",
+      "sha256": "558eebeea4a79841da3ac27923f41dc72f501922af617df0ff9e3addf07b2473"
+    },
+    {
+      "path": "domain/build.gradle.kts",
+      "sha256": "d4be771afee911974b5bd257875b43734204ddef19864b7e28cd1bc33a1f4e82"
+    },
+    {
+      "path": "domain/src/main/kotlin/dev/navalcode/shelf/domain/Books.kt",
+      "sha256": "248d33f45e7ea51993095a0e26efa805aa6d2febc59728e2a21f340198ef8667"
+    },
+    {
+      "path": "domain/src/test/kotlin/dev/navalcode/shelf/domain/SearchBooksTest.kt",
+      "sha256": "312f99d6446bf07b60d4f1959832d9bb07395c0a5a1b08a506f9061434432436"
+    },
+    {
+      "path": "gradle.properties",
+      "sha256": "1b0d06c4540bd61cab45f373e963c74fa139d08167d7786012d2496666a0b258"
+    },
+    {
+      "path": "gradle/licenses/gradle-LICENSE.txt",
+      "sha256": "9536d88ea948603d18e232a13f5958d67807cd80828036b082bff171d2cf0703"
+    },
+    {
+      "path": "gradle/licenses/gradle-NOTICE.txt",
+      "sha256": "c2de5fd9adc7ccc4e1382a0e1f38ec6e14f8ca6e28d3c20289fe80353b019aa1"
+    },
+    {
+      "path": "gradle/wrapper/gradle-wrapper.jar",
+      "sha256": "ad16bca46cb71bb5887c546860d93992aeee35c1fdaf4a242b0a612375d937e0"
+    },
+    {
+      "path": "gradle/wrapper/gradle-wrapper.properties",
+      "sha256": "2fa53698f8cbdad36e0d41477027f8bc985691afcd39844be9161da2fb5436a1"
+    },
+    {
+      "path": "gradlew",
+      "sha256": "b187b4c52e749f5760afdd6fadc31b2a98ad35fb249bf0dff03b72650f320409"
+    },
+    {
+      "path": "gradlew.bat",
+      "sha256": "1d297e00bd21de3ace22b4d7f2de1f9dfa858883d66bbf7c1ccbecccec8f4f3b"
+    },
+    {
+      "path": "settings.gradle.kts",
+      "sha256": "9d7c1a271c519d07d0ce0fcbc1df9d676735887892140149d7ea638213106094"
+    }
+  ]
+}
