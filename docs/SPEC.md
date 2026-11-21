@@ -4,7 +4,7 @@ Original implementation plan. Keep the scope to two screens and a public bibliog
 
 | Behavior | Acceptance evidence |
 | --- | --- |
-| A nonblank query searches Open Library and renders up to 20 matching works. | HTTP contract test verifies query/fields/limit; Compose journey renders list. Live API smoke is recorded separately. |
+| A nonblank query searches Open Library and renders up to 20 matching works. | HTTP contract verifies query/fields/limit and a server response exceeding 20 is bounded on the client; Compose journey renders list. Live API smoke is recorded separately. |
 | An edit cancels the old request immediately, before debounce. | ViewModel virtual-time test observes cancellation before the next request starts. Retrofit test inspects cancellation on the actual OkHttp Call. |
 | Old results never replace the current query. | Late-response ViewModel test uses a deliberately non-cooperative repository; clearing input also cancels and removes items. |
 | A valid canonical-query cache hit avoids network. | Cache test counts source invocations at 179,999 ms; independent query and empty-result cases. |
@@ -21,4 +21,7 @@ Known limits: single UI consumer (no shared in-flight request coalescing), no pa
 
 ## Visual and motion acceptance
 
-Material affordances, local licensed typography, explicit state recovery and ES/EN resources stay functional at enlarged text. A selected identity is rendered once during navigation, without incompatible line-break crossfades; error/empty states do not retain prior results. Android animation preferences remove spatial transition and metadata delay even under the test clock. Four isolated native journeys and two production-entry integrations cover the user paths; optional deterministic frame capture makes the motion evidence repeatable. DESIGN.md records actual tokens after implementation, not a speculative mockup.
+Material affordances, local licensed typography, explicit state recovery and ES/EN resources stay functional at enlarged text. A selected identity is rendered once during navigation, without incompatible line-break crossfades; error/empty states do not retain prior results. Android animation preferences remove spatial transition and metadata delay even under the test clock. Nine production-entry native cases cover the user paths, keyboard, semantics, state announcements and absent metadata; optional deterministic frame capture makes the motion evidence repeatable. DESIGN.md records actual tokens after implementation, not a speculative mockup.
+
+
+At window widths of 800dp or more, search controls/catalogue and selected identity/metadata split into two panes. Compact landscape keeps the heading concise; both panes account for the keyboard. Glyphs follow Android directionality, semantic colors cover both themes, and controls expose at least 48dp targets. Verification records the tested window sizes and APIs; emulator resizing is not tablet hardware evidence.

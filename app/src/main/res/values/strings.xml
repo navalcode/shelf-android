@@ -29,4 +29,7 @@
     <string name="detail_title">The book</string>
     <string name="about_work">About this work</string>
     <string name="data_error">The catalogue returned an unreadable response. Please try again.</string>
+    <string name="open_book">Open details for %1$s</string>
+    <string name="published_in">First published in %1$d</string>
+    <plurals name="works_count"><item quantity="one">%d work</item><item quantity="other">%d works</item></plurals>
 </resources>

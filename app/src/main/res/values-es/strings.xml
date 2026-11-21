@@ -29,4 +29,7 @@
     <string name="detail_title">El libro</string>
     <string name="about_work">Sobre esta obra</string>
     <string name="data_error">El catálogo ha enviado una respuesta que no podemos leer. Vuelve a intentarlo.</string>
+    <string name="open_book">Abrir detalles de %1$s</string>
+    <string name="published_in">Primera publicación en %1$d</string>
+    <plurals name="works_count"><item quantity="one">%d obra</item><item quantity="other">%d obras</item></plurals>
 </resources>

@@ -1,40 +1,34 @@
 package dev.navalcode.shelf.presentation
 
-import androidx.activity.ComponentActivity
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.ui.test.*
 import androidx.test.espresso.Espresso.closeSoftKeyboard
 import androidx.test.espresso.Espresso.pressBack
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import dev.navalcode.shelf.domain.*
+import dev.navalcode.shelf.MainActivity
+import dev.navalcode.shelf.ControlledHttp
+import dev.navalcode.shelf.booksReply
+import dev.navalcode.shelf.domain.Book
+import java.io.IOException
+import java.util.concurrent.atomic.AtomicBoolean
+import org.junit.Before
+import org.junit.After
 import org.junit.Rule
 import org.junit.Test
 
+
 class ShelfJourneyTest {
-    @get:Rule val rule = createAndroidComposeRule<ComponentActivity>()
+    @get:Rule val rule = createAndroidComposeRule<MainActivity>()
     private val book = Book("/works/OL1W", "The Glass Orchard", listOf("Alex Rivera"), 2001, 7)
-    private lateinit var model: SearchViewModel
     private val captures = NativeCapture(rule)
     private fun awaitResults() {
-        rule.waitUntil(5_000) { model.state.value.content is SearchContent.Results }
         closeSoftKeyboard()
+        rule.waitUntil(5_000) { rule.onAllNodesWithTag("book_/works/OL1W").fetchSemanticsNodes().isNotEmpty() }
         rule.onNodeWithTag("search_screen").performScrollToNode(hasTestTag("book_/works/OL1W"))
     }
-    private fun start(repository: BookRepository) {
-        rule.runOnUiThread { rule.activity.enableEdgeToEdge() }
-        rule.setContent {
-            model = viewModel(factory = viewModelFactory {
-                initializer { SearchViewModel(SearchBooks(repository), SavedStateHandle()) }
-            })
-            ShelfTheme { ShelfApp(model) }
-        }
-    }
+    @Before fun resetHttp() = ControlledHttp.reset()
+    @After fun allRepliesConsumed() { org.junit.Assert.assertTrue(ControlledHttp.replies.isEmpty()) }
     @Test fun searchDetailAndBackPreserveQuery() {
-        start { SearchResult(listOf(book), ResultSource.NETWORK) }
+        ControlledHttp.replies += booksReply(book)
         captures.frame("idle")
         rule.onNodeWithTag("search_input").performTextInput("orchard")
         awaitResults()
@@ -46,50 +40,53 @@ class ShelfJourneyTest {
         rule.onNodeWithText("7").assertExists()
         captures.frame("detail")
         captures.transition("return") { rule.onNodeWithTag("back").performClick() }
-        rule.onNodeWithTag("search_screen").performScrollToNode(hasTestTag("search_input"))
+        rule.revealSearchInput()
         rule.onNodeWithTag("search_input").assertTextContains("orchard")
         rule.onNodeWithTag("book_/works/OL1W").assertExists()
     }
     @Test fun errorRetryAndClearRecover() {
-        var calls = 0
-        start { if (++calls == 1) throw SearchException(SearchFailureKind.NETWORK); SearchResult(listOf(book), ResultSource.NETWORK) }
-        rule.onNodeWithTag("search_input").performTextInput("orchard")
-        rule.waitUntil(5_000) { model.state.value.content is SearchContent.Failed }
+        val offline = AtomicBoolean(true)
+        ControlledHttp.handler = {
+            if (offline.get()) throw IOException("Controlled offline response")
+            booksReply(book)
+        }
+        rule.onNodeWithTag("search_input").performTextInput("recovery orchard")
         closeSoftKeyboard()
+        rule.waitUntil(5_000) { rule.onAllNodesWithTag("retry").fetchSemanticsNodes().isNotEmpty() }
         rule.onNodeWithTag("search_screen").performScrollToNode(hasTestTag("retry"))
         captures.frame("error")
+        offline.set(false)
         rule.onNodeWithTag("retry").performClick()
         awaitResults()
-        rule.onNodeWithTag("search_screen").performScrollToNode(hasTestTag("search_input"))
+        rule.revealSearchInput()
         rule.onNodeWithTag("clear_search").performClick()
         rule.onNodeWithTag("book_/works/OL1W").assertDoesNotExist()
     }
     @Test fun emptySearchDoesNotRenderOldItems() {
-        start { SearchResult(if (it == "empty") emptyList() else listOf(book), ResultSource.NETWORK) }
-        rule.onNodeWithTag("search_input").performTextInput("orchard")
+        ControlledHttp.handler = { request ->
+            if (request.url.queryParameter("q") == "empty") booksReply() else booksReply(book)
+        }
+        rule.onNodeWithTag("search_input").performTextInput("present orchard")
         awaitResults()
-        rule.onNodeWithTag("search_screen").performScrollToNode(hasTestTag("search_input"))
+        rule.revealSearchInput()
         rule.onNodeWithTag("search_input").performTextReplacement("empty")
         rule.onNodeWithTag("book_/works/OL1W").assertDoesNotExist()
-        rule.waitUntil(5_000) {
-            (model.state.value.content as? SearchContent.Results)?.result?.books?.isEmpty() == true
-        }
         closeSoftKeyboard()
+        rule.waitUntil(5_000) { rule.onAllNodesWithTag("empty_state").fetchSemanticsNodes().isNotEmpty() }
         rule.onNodeWithTag("search_screen").performScrollToNode(hasTestTag("empty_state"))
         rule.onNodeWithTag("empty_state").assertIsDisplayed()
         captures.frame("empty")
     }
     @Test fun suggestionSearchAndSystemBackKeepContext() {
-        var requested = ""
-        start { requested = it; SearchResult(listOf(book), ResultSource.NETWORK) }
+        ControlledHttp.replies += booksReply(book)
         rule.onNodeWithTag("search_screen").performScrollToNode(hasText("Dune"))
         rule.onNodeWithText("Dune").performClick()
         awaitResults()
-        org.junit.Assert.assertEquals("dune", requested)
+        org.junit.Assert.assertEquals("dune", ControlledHttp.requests.single().url.queryParameter("q"))
         rule.onNodeWithTag("book_/works/OL1W").performClick()
         rule.onNodeWithTag("detail_screen").assertExists()
         pressBack()
-        rule.onNodeWithTag("search_screen").performScrollToNode(hasTestTag("search_input"))
+        rule.revealSearchInput()
         rule.onNodeWithTag("search_input").assertTextContains("Dune")
     }
 

@@ -30,4 +30,15 @@ class SearchBooksTest {
         try { SearchBooks { throw cancelled }("books"); fail() }
         catch (actual: CancellationException) { assertSame(cancelled, actual) }
     }
+    @Test fun `canonical keys do not change with Turkish device locale`() = runTest {
+        val previous = java.util.Locale.getDefault()
+        try {
+            java.util.Locale.setDefault(java.util.Locale.forLanguageTag("tr-TR"))
+            var received = ""
+            SearchBooks { received = it; SearchResult(emptyList(), ResultSource.NETWORK) }("  ISTANBUL  ")
+            assertEquals("istanbul", received)
+        } finally {
+            java.util.Locale.setDefault(previous)
+        }
+    }
 }

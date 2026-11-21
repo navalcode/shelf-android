@@ -27,7 +27,7 @@ Shelf uses native Android controls, readable typography and a single shared iden
 
 ## Evidence on Hand
 
-Working source, deterministic JVM tests, Compose journeys and actual emulator captures. Public API smoke checks are separate from synthetic test fixtures. No performance benchmark, physical-device, TalkBack or store approval evidence.
+Working source, deterministic JVM tests, Compose journeys and actual emulator captures. Public API smoke checks are separate from synthetic test fixtures. Optimized APK cold-launch and retained-task process-loss checks supplement deterministic suites. Accessibility Test Framework/semantics checks are distinct from a full TalkBack review. Current physical-device execution and remaining limits are recorded in docs/VERIFICATION.md; no hardware benchmark or store approval is claimed.
 
 ## Product Principles
 

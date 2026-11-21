@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.*
 
@@ -22,7 +24,7 @@ fun ShelfApp(model: SearchViewModel) {
     val state by model.state.collectAsStateWithLifecycle()
     val motion = rememberMotionEnabled()
     CompositionLocalProvider(LocalMotionEnabled provides motion) {
-        Surface(Modifier.fillMaxSize()) {
+        Surface(Modifier.fillMaxSize().semantics { testTagsAsResourceId = true }) {
             SharedTransitionLayout {
                 val shared = this
                 NavHost(nav, startDestination = "search",

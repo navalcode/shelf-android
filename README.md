@@ -4,9 +4,9 @@ A small Kotlin / Jetpack Compose app by Manuel Naval. Search the real [Open Libr
 
 [Español](README.es.md) · [Architecture and review guide](docs/ARCHITECTURE.md) · [Verification](docs/VERIFICATION.md) · [Design system](DESIGN.md) · [CI](https://github.com/navalcode/shelf-android/actions/workflows/checks.yml)
 
-<p><img src="docs/images/search.png" width="250" alt="Shelf showing a real Open Library search" /> <img src="docs/images/navigation.gif" width="250" alt="Native title transition between search and detail using a fictional test book" /></p>
+<p><img src="docs/images/idle.png" width="220" alt="Shelf opening with its native search panel" /> <img src="docs/images/search.png" width="220" alt="Shelf showing a real Open Library search" /> <img src="docs/images/navigation.gif" width="220" alt="Native title transition using a fictional test book" /></p>
 
-Live API search (left); native test-clock navigation with a fictional book (right). [Image provenance](docs/images/PROVENANCE.json).
+Optimized native app: opening and live API search. Test-clock navigation uses a fictional book. [Image provenance](docs/images/PROVENANCE.json).
 
 ## Run
 
@@ -33,6 +33,6 @@ The UI has local Manrope typography, Spanish resources, English fallback, system
 
 ## Tests and license
 
-Deterministic tests cover domain delegation, exact cache expiry, canonical keys, LRU, errors, cancellation, the real Retrofit HTTP contract via MockWebServer, debounce and late-response rejection. Four Compose journeys and two production-entry integrations use original fictional fixtures. The latter launch MainActivity with the real application graph, Retrofit and cache, replacing only HTTP responses; they also check errors and activity recreation. No automated test depends on the public service. Live API checks are recorded separately in verification.
+Deterministic tests cover domain delegation, exact cache expiry, canonical keys, LRU, errors, cancellation, the real Retrofit HTTP contract via MockWebServer, debounce and late-response rejection. All nine native cases launch MainActivity with the real application graph, Retrofit and cache, replacing only HTTP responses. They cover errors, retry, activity recreation, keyboard behavior, accessible actions and missing metadata. API34+ adds automated accessibility scans. No automated test depends on the public service. Live API checks are recorded separately in verification.
 
 Original code is available under the MIT license. Third-party notices are in [THIRD_PARTY.md](THIRD_PARTY.md).

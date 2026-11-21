@@ -4,9 +4,9 @@ Aplicación pequeña en Kotlin / Jetpack Compose de Manuel Naval. Busca contra l
 
 [English](README.md) · [Arquitectura y guía de revisión](docs/ARCHITECTURE.md) · [Verificación](docs/VERIFICATION.md) · [Sistema de diseño](DESIGN.md) · [CI](https://github.com/navalcode/shelf-android/actions/workflows/checks.yml)
 
-<p><img src="docs/images/search.png" width="250" alt="Shelf con una búsqueda real de Open Library" /> <img src="docs/images/navigation.gif" width="250" alt="Transición nativa entre búsqueda y detalle con un libro ficticio de pruebas" /></p>
+<p><img src="docs/images/idle.png" width="220" alt="Apertura de Shelf con su panel nativo de búsqueda" /> <img src="docs/images/search.png" width="220" alt="Shelf con una búsqueda real en Open Library" /> <img src="docs/images/navigation.gif" width="220" alt="Transición nativa con un libro ficticio de pruebas" /></p>
 
-Búsqueda real (izquierda); navegación con reloj de pruebas nativo y libro ficticio (derecha). [Procedencia de imágenes](docs/images/PROVENANCE.json).
+App nativa optimizada: apertura y búsqueda real. La navegación de reloj de tests usa un libro ficticio. [Procedencia de imágenes](docs/images/PROVENANCE.json).
 
 ## Ejecutar
 
@@ -33,6 +33,6 @@ Tipografía Manrope local, recursos españoles con fallback inglés, modo oscuro
 
 ## Pruebas y licencia
 
-Pruebas deterministas de delegación Domain, expiración exacta, claves, LRU, fallos, cancelación, contrato Retrofit con MockWebServer, debounce y respuestas tardías. Cuatro recorridos Compose y dos integraciones desde MainActivity usan datos ficticios originales. Las integraciones conservan el grafo real, Retrofit y caché y sustituyen solo las respuestas HTTP; comprueban también errores y recreación de la Activity. Ningún test automatizado depende del servicio público. La red real tiene evidencia separada.
+Pruebas deterministas de delegación Domain, expiración exacta, claves, LRU, fallos, cancelación, contrato Retrofit con MockWebServer, debounce y respuestas tardías. Los nueve casos nativos arrancan MainActivity con el grafo real, Retrofit y caché, sustituyendo solo las respuestas HTTP. Comprueban errores, reintento, recreación, teclado, acciones accesibles y metadatos ausentes. API34+ añade comprobaciones automáticas de accesibilidad. Ningún test automatizado depende del servicio público. La red real tiene evidencia separada.
 
 El código original se distribuye con licencia MIT. Los avisos de terceros están en [THIRD_PARTY.md](THIRD_PARTY.md).

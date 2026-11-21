@@ -2,7 +2,7 @@
   "files": [
     {
       "path": ".github/workflows/checks.yml",
-      "sha256": "f1048f583686f1c0d87540e6ee91025b7db99de481a5b80a29a626e773d46b03"
+      "sha256": "98a03d5db25192c0b84b30971c06ac97769d3b45fe52cb101aa794e803b4cf49"
     },
     {
       "path": ".gitignore",
@@ -10,7 +10,7 @@
     },
     {
       "path": "DESIGN.md",
-      "sha256": "e8dc22d2a2c74e3e0b1ad834d5b0493933e981158ea6df03519e552ea4431e5a"
+      "sha256": "b3b39b8eae11cc2073f4c702e795ccdf0b25da7e2b9a921c523dc25d75a1c36b"
     },
     {
       "path": "LICENSE",
@@ -18,23 +18,23 @@
     },
     {
       "path": "PRODUCT.md",
-      "sha256": "120f5d32d9b2b095aeb4e7e73b6db2d3e511b6ac8f0bf2acecca38708a5b33f3"
+      "sha256": "276b708b5a5a5a037cf55dd4a111d2b75c9728f4f7534d0324e3698f9cb764fb"
     },
     {
       "path": "README.es.md",
-      "sha256": "26b4e440dfe83d1fb9cf5cddc07301e5820e978b5e8c6192da2209e0b769f90f"
+      "sha256": "8007723d031cc12a2a04184b576a9f7618236dc9a0184a9adff6f795fb94773b"
     },
     {
       "path": "README.md",
-      "sha256": "a34bea8f4a9a6db6ba70cc40d1a665e5a8cfa4c563ebf50772d68f41172850e4"
+      "sha256": "b081c1d381e068e02ceffb81262d407a3cf5bd7f9e6a20b9c843ebae098f1837"
     },
     {
       "path": "THIRD_PARTY.md",
-      "sha256": "8f7481531ee8b35ff9ecccf619ef6616b7b74c85dc719f807b50d3622006a8a3"
+      "sha256": "0f18c6535a9d81a27d1a486f9f0a9bd40c815af857de8eeef6773e5300f4c41f"
     },
     {
       "path": "app/build.gradle.kts",
-      "sha256": "cf1a4352564f3cc3f6c4e257d91a58c7617af66b053c3b6d2818fb548532b949"
+      "sha256": "cb8d3f2936a2e7e1bff995e7dd19cb274a00bdd3e75001e57922b3b03439e647"
     },
     {
       "path": "app/proguard-rules.pro",
@@ -42,19 +42,27 @@
     },
     {
       "path": "app/src/androidTest/java/dev/navalcode/shelf/ProductionEntryTest.kt",
-      "sha256": "d361cd26681671955dfe83d5e7e2c7340ae9700ccaf0f029388ff4252c0a3402"
+      "sha256": "1f2f7ce88c38adb45489e3143b65dcde42c14017d4e4c2c493502343077cc76b"
     },
     {
       "path": "app/src/androidTest/java/dev/navalcode/shelf/ShelfTestRunner.kt",
-      "sha256": "cf43ba1e9bd4a81f40d9123d806402b142d4b2ba4b09b4c3219c5e990046efe8"
+      "sha256": "afa8516a6e12cf4e9bdbe134ac2b99a1b59f4df5982b3dd3e4a8f516e8efe58d"
+    },
+    {
+      "path": "app/src/androidTest/java/dev/navalcode/shelf/presentation/AccessibilityJourneyTest.kt",
+      "sha256": "34832b0dd957e081e64648f3599a33d454785b3d8e359be00990d89d42255445"
     },
     {
       "path": "app/src/androidTest/java/dev/navalcode/shelf/presentation/NativeCapture.kt",
       "sha256": "b0ddc145ab60678632af17e1cd11b96b634b26ce3ac93c6d4b0fd05af2131630"
     },
     {
+      "path": "app/src/androidTest/java/dev/navalcode/shelf/presentation/SearchInteractions.kt",
+      "sha256": "dd1010a60af1b76d501474f00b23eac9f561e346e56db72d3e5d3a6bf9b49ecd"
+    },
+    {
       "path": "app/src/androidTest/java/dev/navalcode/shelf/presentation/ShelfJourneyTest.kt",
-      "sha256": "c9ad010c6c66b3d0163dd11ec0d3804c392886b4ac6aeab08f7f44a54357994f"
+      "sha256": "29e73344e9435263880536d606d2783c61edb74d3d38180779bc6d5a66be9779"
     },
     {
       "path": "app/src/main/AndroidManifest.xml",
@@ -74,19 +82,23 @@
     },
     {
       "path": "app/src/main/java/dev/navalcode/shelf/presentation/BookIdentity.kt",
-      "sha256": "9695744d33bc24b7712a3e9e879b12e128c558b362ef5c26639a98992bb74b53"
+      "sha256": "57b3b98fc4a848875561a9580ce0a0137374721f97870401bc195095ef7b0789"
     },
     {
       "path": "app/src/main/java/dev/navalcode/shelf/presentation/DetailScreen.kt",
-      "sha256": "e53a7084fe2d5e74d1fbeb33797c10f7697a3a0b3cbdb67826960fec2bbefcdc"
+      "sha256": "6d633c637032285267ea5acf99515a2bf7c9ef3b2d3796c2dbd9720395c0bf5e"
     },
     {
       "path": "app/src/main/java/dev/navalcode/shelf/presentation/Motion.kt",
       "sha256": "fd45c2949999819a91354a7440f42502e64a989d727e95aee798e64079fca82b"
     },
     {
+      "path": "app/src/main/java/dev/navalcode/shelf/presentation/SearchHeader.kt",
+      "sha256": "b30e97269c539ac7aa014a7fd9eb068e2c814232ed178bc3aad8295695e0b02d"
+    },
+    {
       "path": "app/src/main/java/dev/navalcode/shelf/presentation/SearchScreen.kt",
-      "sha256": "e1f713f3a6e9885ef8f33e6b548c64c0b17c3be9cd0d78b0d73f18f5512d19b6"
+      "sha256": "116db32347df2fbfd71c41844db89c19edf83f47cf17e671bbc12d08e6167649"
     },
     {
       "path": "app/src/main/java/dev/navalcode/shelf/presentation/SearchViewModel.kt",
@@ -94,15 +106,19 @@
     },
     {
       "path": "app/src/main/java/dev/navalcode/shelf/presentation/ShelfApp.kt",
-      "sha256": "bd501e792233508209e678578ffc3fcf8e62210a08e6e96fb1f156e2e012cb4f"
+      "sha256": "8c5e98daf5721e993d55ac692f18d35295f33fa78a1539bece730601eb7a1f79"
     },
     {
       "path": "app/src/main/java/dev/navalcode/shelf/presentation/Theme.kt",
-      "sha256": "1b973eab9003083ec38aebf9ee5154088476eed900ef980d37b9c473ebe10fac"
+      "sha256": "bf7865a28727cb7657151efe0d01fe9481320c97b5fd63cceda8f434e22fdacc"
     },
     {
       "path": "app/src/main/res/drawable/ic_back.xml",
-      "sha256": "6ef3d34e909cbc0b95e95c6d438d636733d5ced24c098b128bfab3d4ccf5580f"
+      "sha256": "9f807229a02aee6e4f13f5edab61006267b26d524244ff53351634a08877e622"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_catalogue.xml",
+      "sha256": "495f52486a6a7c779bfd2cfe78538cf5a81ce2e62b1032946287334ac36341c5"
     },
     {
       "path": "app/src/main/res/drawable/ic_clear.xml",
@@ -110,7 +126,7 @@
     },
     {
       "path": "app/src/main/res/drawable/ic_forward.xml",
-      "sha256": "07c879e4ba87f5203e2c754075d3399cafffc7682510ad2049461fd60065fdf0"
+      "sha256": "53f9cab596d68b48b594f6e71a7289c004c170d4dc130fa66ab238a0b5d9b3a7"
     },
     {
       "path": "app/src/main/res/drawable/ic_search.xml",
@@ -138,11 +154,11 @@
     },
     {
       "path": "app/src/main/res/values-es/strings.xml",
-      "sha256": "85f40310eeefbaa38ceca7f1bd3ea431bc16faa2391c5507d6e23fdbce4a9c1c"
+      "sha256": "5cfcce54fd3292cff51acd40f79cbbd57f946c56a4bd61fdc24f4a6b7f5d07da"
     },
     {
       "path": "app/src/main/res/values/strings.xml",
-      "sha256": "3245de15b2bc7a2dc9dc1e70505e10da328e73cd9dbabca244b5ef0a62f7c4f6"
+      "sha256": "e0bf61c7e548da5c2e6e074b5fc161b9b2716760761de28bcc21630a5c5ba1a0"
     },
     {
       "path": "app/src/main/res/values/themes.xml",
@@ -166,7 +182,7 @@
     },
     {
       "path": "data/src/main/kotlin/dev/navalcode/shelf/data/OpenLibrary.kt",
-      "sha256": "53b655b26147333d9280b71f5a1bb6aa80864adcd30a5596a4cbce526fa03e47"
+      "sha256": "b338dc91fd2c1ebfc74918a92c5479bd6e481c01b454c90ba8a531d1380434f1"
     },
     {
       "path": "data/src/test/kotlin/dev/navalcode/shelf/data/CachedBookRepositoryTest.kt",
@@ -174,39 +190,43 @@
     },
     {
       "path": "data/src/test/kotlin/dev/navalcode/shelf/data/OpenLibraryTest.kt",
-      "sha256": "09dffb8e53fa0eed186544731b96e7bc402812355b2f09c124e457b6eb652d1a"
+      "sha256": "747b66abd3fd974a4da7a8c256e37c7247ced960a7a6f78a11855a4cbabeb105"
     },
     {
       "path": "docs/ARCHITECTURE.md",
-      "sha256": "abab33b8bfcda9cc8cfe01d2c8301fca34bb5ef52c462770e66cd32510447450"
+      "sha256": "2ec75917c76192d5059d248255d487448562e83e8e493940ae0fd0e986cb8715"
     },
     {
       "path": "docs/SPEC.md",
-      "sha256": "ec23049d4c1ce3b2d9bbf44806561a35f6e270e3d480153b84f4f8a9142e357c"
+      "sha256": "aee60e76a542dfca8e655b7fa5896cf149fd78e6be4a17a176ffe86dbcf04ce1"
     },
     {
       "path": "docs/VERIFICATION.md",
-      "sha256": "9b7d117ac5d3949c78b0c07871fad1ee2f118780541308767dba182c4f379fa6"
+      "sha256": "ecec6c7d7e878af152b8e90863ea606f378ff76964e646f21292cf0a71d18396"
     },
     {
       "path": "docs/images/PROVENANCE.json",
-      "sha256": "9f8020d62539fa1f5b28377dd283885aded237be6e06cf41082d54d4b0c46020"
+      "sha256": "9f5c0b74bebfa14c653ddc5de870707524549be4e3c2796cab47eef0291bc5e8"
     },
     {
       "path": "docs/images/detail.png",
-      "sha256": "36045fa7e833c0c24388a9fc3c528774bdf99764f940e9637fde5e8b2385bcc7"
+      "sha256": "2251b312d6597c2499218a9d1df1f96d0a015fa8d9938f7c2c3ccfeab7af5502"
     },
     {
       "path": "docs/images/es-dark-large.png",
-      "sha256": "5999b80bd28adc742642910e6023f4bfaed6d1801de7741834095e7135812bce"
+      "sha256": "0f14cbb601cf2d9028ae30d150880cb3344d7ce7dd3d2202fbaa4690a62668ef"
+    },
+    {
+      "path": "docs/images/idle.png",
+      "sha256": "bc57a7ddb7494faa9cccdbc6da0fb30e0e206ea1ab790543d3d510fb983b74ce"
     },
     {
       "path": "docs/images/navigation.gif",
-      "sha256": "b96819515da172bbd8f8917dad93b725179f8280c347cc7b9edb7bb98d86cd95"
+      "sha256": "bfbfa039882278ba6023a1b510a74fef9be5da6e626a7163902782baa8f23c00"
     },
     {
       "path": "docs/images/search.png",
-      "sha256": "ac93802fa424598544612bb1f4d31cb7bfce57309e506814ffc685ce3a219298"
+      "sha256": "be40ab893386aa3c2e69e8c0135d9a998e2f340c0c5ee64f938789750f21af1a"
     },
     {
       "path": "domain/build.gradle.kts",
@@ -218,7 +238,7 @@
     },
     {
       "path": "domain/src/test/kotlin/dev/navalcode/shelf/domain/SearchBooksTest.kt",
-      "sha256": "3f9be16153b0302b8895b19ae3968b5eff89df2a6592c35810f959e5f7f41ce9"
+      "sha256": "dc6311ba25a9225267673b3025d34b9d4332c502cde5b79443d96d7d72362f71"
     },
     {
       "path": "gradle.properties",
@@ -251,6 +271,14 @@
     {
       "path": "settings.gradle.kts",
       "sha256": "9d7c1a271c519d07d0ce0fcbc1df9d676735887892140149d7ea638213106094"
+    },
+    {
+      "path": "verification/README.md",
+      "sha256": "96d2dc86f7ca56983afa5fdc085419cf148dd850f48c60d19b8447bb8de35f00"
+    },
+    {
+      "path": "verification/android_runtime.py",
+      "sha256": "e3c33c8a726cbdb8a4afb26e824f2b0e79f31cdd093ed03e7e30ae67084e0739"
     }
   ]
 }

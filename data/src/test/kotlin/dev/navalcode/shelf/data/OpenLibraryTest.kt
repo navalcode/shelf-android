@@ -121,4 +121,13 @@ class OpenLibraryTest {
         source.search("three")
         assertEquals(listOf(0L, 1100L), starts)
     }
+    @Test fun `client bounds results even if the service ignores limit`() = runBlocking {
+        MockWebServer().use { server ->
+            val docs = (1..25).joinToString { """{"key":"/works/OL${it}W","title":"Book $it"}""" }
+            server.enqueue(MockResponse().setBody("{\"docs\":[$docs]}"))
+            val books = source(server).search("books")
+            assertEquals(20, books.size)
+            assertEquals("/works/OL20W", books.last().id)
+        }
+    }
 }

@@ -12,6 +12,8 @@ Gradle Wrapper scripts/JAR are from Gradle 8.14.6, Apache-2.0; its LICENSE and N
 | AndroidX Activity | 1.10.1 | Apache-2.0 |
 | AndroidX Lifecycle | 2.9.2 | Apache-2.0 |
 | AndroidX Navigation | 2.9.3 | Apache-2.0 |
+| Compose UI accessibility test integration | 1.9.0 (BOM-managed, instrumentation only) | Apache-2.0 |
+| Accessibility Test Framework | 4.1.1 (instrumentation only) | Apache-2.0 |
 | AndroidX Compose BOM | 2025.08.00 | Apache-2.0 |
 | Retrofit and Gson converter | 3.0.0 | Apache-2.0 |
 | OkHttp / MockWebServer | 4.12.0 | Apache-2.0 |

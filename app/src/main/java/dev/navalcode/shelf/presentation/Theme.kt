@@ -9,6 +9,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.dp
 import dev.navalcode.shelf.R
 
 private val Manrope = FontFamily(
@@ -18,6 +19,7 @@ private val Manrope = FontFamily(
     Font(R.font.manrope_bold, FontWeight.Bold),
 )
 private val ShelfType = Typography(
+    displayMedium = TextStyle(fontFamily = Manrope, fontWeight = FontWeight.Bold, fontSize = 42.sp, lineHeight = 50.sp, letterSpacing = (-1).sp),
     displaySmall = TextStyle(fontFamily = Manrope, fontWeight = FontWeight.Bold, fontSize = 32.sp, lineHeight = 40.sp, letterSpacing = (-0.8).sp),
     headlineLarge = TextStyle(fontFamily = Manrope, fontWeight = FontWeight.Bold, fontSize = 30.sp, lineHeight = 38.sp, letterSpacing = (-0.7).sp),
     headlineMedium = TextStyle(fontFamily = Manrope, fontWeight = FontWeight.Bold, fontSize = 26.sp, lineHeight = 34.sp, letterSpacing = (-0.5).sp),
@@ -57,5 +59,15 @@ private val Dark = darkColorScheme(
 @Composable
 fun ShelfTheme(content: @Composable () -> Unit) {
     MaterialTheme(colorScheme = if (isSystemInDarkTheme()) Dark else Light,
-        typography = ShelfType, content = content)
+        typography = ShelfType, shapes = Shapes(medium = androidx.compose.foundation.shape.RoundedCornerShape(12.dp),
+            large = androidx.compose.foundation.shape.RoundedCornerShape(16.dp)), content = content)
+}
+
+/** Content-driven split: both panes remain readable at an 800dp window width. */
+internal object ShelfLayout {
+    val ExpandedMinWidth = 800.dp
+    val SidePaneWidth = 320.dp
+    val ExpandedContentWidth = 1120.dp
+    val CompactContentWidth = 720.dp
+    val PaneGap = 48.dp
 }

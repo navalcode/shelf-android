@@ -18,11 +18,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+private const val SEARCH_LIMIT = 20
+
 interface OpenLibraryApi {
     @GET("search.json")
     suspend fun search(
         @Query("q") query: String,
-        @Query("limit") limit: Int = 20,
+        @Query("limit") limit: Int = SEARCH_LIMIT,
         @Query("fields") fields: String = "key,title,author_name,first_publish_year,edition_count",
     ): Response<SearchDto>
 }
@@ -63,7 +65,7 @@ class OpenLibrarySource(
             throw SearchException(if (response.code() == 429) SearchFailureKind.RATE_LIMIT else SearchFailureKind.SERVICE)
         }
         val docs = response.body()?.docs ?: throw SearchException(SearchFailureKind.INVALID_DATA)
-        val books = docs.map { dto ->
+        val books = docs.take(SEARCH_LIMIT).map { dto ->
             dto ?: throw SearchException(SearchFailureKind.INVALID_DATA)
             val id = dto.key?.takeIf { it.matches(Regex("/works/OL[0-9]+W")) }
                 ?: throw SearchException(SearchFailureKind.INVALID_DATA)

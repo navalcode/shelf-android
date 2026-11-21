@@ -5,6 +5,7 @@ import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.closeSoftKeyboard
 import androidx.test.platform.app.InstrumentationRegistry
+import dev.navalcode.shelf.presentation.revealSearchInput
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -23,7 +24,7 @@ class ProductionEntryTest {
         rule.onNodeWithText(text).assertIsDisplayed()
     }
     private fun search(query: String) {
-        rule.onNodeWithTag("search_screen").performScrollToNode(hasTestTag("search_input"))
+        rule.revealSearchInput()
         rule.onNodeWithTag("search_input").performTextReplacement(query)
         closeSoftKeyboard()
     }

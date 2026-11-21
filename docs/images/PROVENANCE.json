@@ -2,29 +2,39 @@
   "date": "2026-11-21",
   "assets": [
     {
+      "path": "idle.png",
+      "origin": "Native optimized Shelf app initial view; no catalogue prefill. Own Android 17/API37 emulator, English/light/font1.0, 360x640dp. Ephemeral QA signing, not store distribution.",
+      "raw_capture_sha256": "79ccf48033f44d0d2ede292ee6c800b10b02e3a766e4c6efd5135005eab61bad",
+      "sha256": "bc57a7ddb7494faa9cccdbc6da0fb30e0e206ea1ab790543d3d510fb983b74ce",
+      "pixel_content": "unchanged; Source text metadata inserted without decoding/re-encoding image data"
+    },
+    {
       "path": "search.png",
-      "origin": "Unedited native production app, live Open Library query Dune, English/light/font1.0, 360x640dp.",
-      "platform": "Android17/API37 own emulator; not physical hardware",
-      "sha256": "ac93802fa424598544612bb1f4d31cb7bfce57309e506814ffc685ce3a219298"
+      "origin": "Native optimized Shelf app, live Open Library query Dune. Own Android 17/API37 emulator, English/light/font1.0, 360x640dp. Ephemeral QA signing.",
+      "raw_capture_sha256": "46b59ff4dd81aeec0a41aecdb5c4a718f60cd0846b6657ea8b98a5b2073f7ba8",
+      "sha256": "be40ab893386aa3c2e69e8c0135d9a998e2f340c0c5ee64f938789750f21af1a",
+      "pixel_content": "unchanged; Source text metadata inserted without decoding/re-encoding image data"
     },
     {
       "path": "detail.png",
-      "origin": "Unedited native production app, live Open Library Dune detail, English/light/font1.0, 360x640dp.",
-      "platform": "Android17/API37 own emulator; not physical hardware",
-      "sha256": "36045fa7e833c0c24388a9fc3c528774bdf99764f940e9637fde5e8b2385bcc7"
+      "origin": "Native optimized Shelf app, selected live Open Library Dune detail. Own Android 17/API37 emulator, English/light/font1.0, 360x640dp. Ephemeral QA signing.",
+      "raw_capture_sha256": "99de8613048487ec1eddf1e8c1870d5f7a9ff2f8a635b0a3f32f76c0cd3cb1aa",
+      "sha256": "2251b312d6597c2499218a9d1df1f96d0a015fa8d9938f7c2c3ccfeab7af5502",
+      "pixel_content": "unchanged; Source text metadata inserted without decoding/re-encoding image data"
     },
     {
       "path": "es-dark-large.png",
-      "origin": "Unedited native Compose test activity, Spanish/dark/font1.8, 360x640dp, initial query suggestions; no synthetic catalogue shown.",
-      "platform": "Android17/API37 own emulator; not physical hardware",
-      "sha256": "5999b80bd28adc742642910e6023f4bfaed6d1801de7741834095e7135812bce"
+      "origin": "Native Compose UI initial view; Spanish/dark/font1.8, 360x640dp. Own Android 17/API37 emulator; no catalogue prefill or live API result shown.",
+      "raw_capture_sha256": "e32d82dacc4e9e1885dffa399b6c953adfd053f01fd27db81e4bfdaae7741a72",
+      "sha256": "0f14cbb601cf2d9028ae30d150880cb3344d7ce7dd3d2202fbaa4690a62668ef",
+      "pixel_content": "unchanged; Source text metadata inserted without decoding/re-encoding image data"
     },
     {
       "path": "navigation.gif",
-      "origin": "Derived only from unedited native Compose test-clock frames at 0/16/80/160/240/400 ms for entrance and return. Original fictional book The Glass Orchard by Alex Rivera; not a live API result. Resized to 360x640 and held at endpoints for reading; intermediate durations follow sample intervals. Not a hardware FPS or real-time recording claim.",
-      "source": "ShelfJourneyTest.searchDetailAndBackPreserveQuery, motionCapture=true. Screenshot collection was subsequently separated into NativeCapture.kt; application motion and assertions are unchanged.",
-      "sha256": "b96819515da172bbd8f8917dad93b725179f8280c347cc7b9edb7bb98d86cd95"
+      "origin": "Native MainActivity journey with controlled HTTP; fictional The Glass Orchard by Alex Rivera. Sampled Compose clock frames 0/16/80/160/240/400ms, resized to360x640 and held at endpoints for reading. Not real-time hardware/FPS footage.",
+      "source": "app/src/androidTest/java/dev/navalcode/shelf/presentation/ShelfJourneyTest.kt and NativeCapture.kt; motionCapture=true",
+      "sha256": "bfbfa039882278ba6023a1b510a74fef9be5da6e626a7163902782baa8f23c00"
     }
   ],
-  "note": "No image generation, fabricated covers or image-content retouching. Original application typography/icons retain their own notices."
+  "note": "Original native display captures; PNG pixel data preserved, Source metadata embedded. GIF derived only from disclosed native frames. No image generation, retouched UI, fabricated covers or employer material."
 }
