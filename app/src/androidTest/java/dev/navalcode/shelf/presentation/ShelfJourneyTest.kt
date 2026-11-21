@@ -2,11 +2,9 @@ package dev.navalcode.shelf.presentation
 
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.*
-import androidx.compose.ui.graphics.asAndroidBitmap
-import android.graphics.Bitmap
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.espresso.Espresso.closeSoftKeyboard
-import java.io.File
+import android.os.ParcelFileDescriptor
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -22,10 +20,12 @@ class ShelfJourneyTest {
     private val book = Book("/works/OL1W", "The Glass Orchard", listOf("Alex Rivera"), 2001, 7)
     private lateinit var model: SearchViewModel
     private fun capture(name: String) {
-        val directory = File(InstrumentationRegistry.getInstrumentation().targetContext.getExternalFilesDir(null), "screenshots")
-        directory.mkdirs()
-        File(directory, "$name.png").outputStream().use {
-            rule.onRoot().captureToImage().asAndroidBitmap().compress(Bitmap.CompressFormat.PNG, 100, it)
+        // Gradle uninstalls the target after tests: shell-owned output survives cleanup.
+        require(name in setOf("search", "detail"))
+        val automation = InstrumentationRegistry.getInstrumentation().uiAutomation
+        for (command in listOf("mkdir -p /sdcard/Download/shelf-test-output",
+            "screencap -p /sdcard/Download/shelf-test-output/$name.png")) {
+            ParcelFileDescriptor.AutoCloseInputStream(automation.executeShellCommand(command)).use { it.readBytes() }
         }
     }
     private fun awaitResults() {

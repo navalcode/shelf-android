@@ -2,7 +2,7 @@
   "files": [
     {
       "path": ".github/workflows/checks.yml",
-      "sha256": "2536d97ca7183915fc5219efffae478da0a0c1faffbd28baf43e5c002c3ccde5"
+      "sha256": "f1048f583686f1c0d87540e6ee91025b7db99de481a5b80a29a626e773d46b03"
     },
     {
       "path": ".gitignore",
@@ -34,7 +34,7 @@
     },
     {
       "path": "app/src/androidTest/java/dev/navalcode/shelf/presentation/ShelfJourneyTest.kt",
-      "sha256": "db37a70b4427973841a1aa300e47d3b543a887a0a3038a6d558718012c1b0a58"
+      "sha256": "674d4f51cb8e7142fae08591cf2b732720fd965a00d0d749f8f25deb048abf22"
     },
     {
       "path": "app/src/main/AndroidManifest.xml",
