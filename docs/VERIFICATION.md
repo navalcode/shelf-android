@@ -17,7 +17,7 @@
 
 ## Hosted verification
 
-The workflow now runs native integration and optimized cold-launch checks on API 26 and API 35, after JVM/lint/build checks. The quality-pass hosted result is pending; consult [Android checks](https://github.com/navalcode/shelf-android/actions/workflows/checks.yml). Local results above do not assert a minimum-API runtime pass.
+[Run 44897276762](https://github.com/navalcode/shelf-android/actions/workflows/checks.yml) passed on code commit `previous source revision`: build plus native integration and optimized cold-launch checks on API 26 and API 35. Downloaded reports confirm 32 JVM tests and nine native cases on each API, with no failures/skips, zero lint errors and an accessible search input from the QA-signed R8 APK on both APIs. The final documentation-only commit preserves that tested runtime, tests, assets, dependencies and workflow exactly.
 
 Previous successful baseline: [44887189457](https://github.com/navalcode/shelf-android/actions/workflows/checks.yml), commit `previous source revision`, 30 JVM and six native cases on API 35. That baseline does not validate this subsequent UI/test revision.
 
