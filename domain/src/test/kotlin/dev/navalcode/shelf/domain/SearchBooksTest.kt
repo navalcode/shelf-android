@@ -1,6 +1,5 @@
 package dev.navalcode.shelf.domain
 
-import java.io.IOException
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
@@ -23,8 +22,8 @@ class SearchBooksTest {
         assertEquals(0, calls)
     }
     @Test fun `preserves repository error`() = runTest {
-        val error = IOException("offline")
-        try { SearchBooks { throw error }("books"); fail() } catch (actual: IOException) { assertSame(error, actual) }
+        val error = SearchException(SearchFailureKind.NETWORK)
+        try { SearchBooks { throw error }("books"); fail() } catch (actual: SearchException) { assertSame(error, actual) }
     }
     @Test fun `preserves cancellation`() = runTest {
         val cancelled = CancellationException("superseded")

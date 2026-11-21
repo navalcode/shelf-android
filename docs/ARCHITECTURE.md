@@ -18,7 +18,9 @@ flowchart LR
     App --> Data["data · cache / Retrofit"]
     Data --> Domain
     Data --> API["Open Library HTTPS"]
-``` Manual DI exposes a single application-scoped repository/cache/source and a lifecycle-owned ViewModel; tests replace the same public ports.
+```
+
+Manual DI exposes a single application-scoped repository/cache/source and a lifecycle-owned ViewModel. Unit/journey tests replace the repository port. Production-entry instrumentation launches MainActivity with the same application graph and replaces only HTTP responses through a test-only OkHttp interceptor; it retains Retrofit, the cache, timeouts and User-Agent. The test runner and controlled transport exist only in the instrumentation APK.
 
 ## Read in this order
 
@@ -39,7 +41,7 @@ One UI consumer is expected. Cache operations are thread safe; identical concurr
 
 ## Validation and limits
 
-Malformed required identifiers/title/list reject the entire response; optional fields remain absent. HTTP errors preserve their status, including a separate 429 message. The UI never renders raw exceptions, HTML or arbitrary external links. Query snapshots are bounded to 121 characters (120 allowed plus validation feedback). Searches use generic Open Library `q` semantics, including its supported query syntax.
+Malformed required identifiers/title/list reject the entire response; optional fields remain absent. Data translates HTTP 429, other HTTP errors, I/O failures and invalid payloads into domain error categories. The ViewModel never imports Retrofit, Gson or IOException. A bad response has its own message; it never asks the user to check their connection. Cancellation remains cancellation. The UI never renders raw exceptions, HTML or arbitrary external links. Query snapshots are bounded to 121 characters (120 allowed plus validation feedback). Searches use generic Open Library `q` semantics, including its supported query syntax.
 
 SavedStateHandle stores query and selected fields only; Navigation handles the back stack. System task restoration is conditional on Android retaining saved state. Tests of SavedStateHandle reconstruction do not prove an OS process-death journey. No production signing, store publishing, physical-device behavior, TalkBack or formal accessibility conformance is claimed.
 

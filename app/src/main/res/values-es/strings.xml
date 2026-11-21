@@ -28,4 +28,5 @@
     <string name="suggestions">Empieza por un nombre o una historia</string>
     <string name="detail_title">El libro</string>
     <string name="about_work">Sobre esta obra</string>
+    <string name="data_error">El catálogo ha enviado una respuesta que no podemos leer. Vuelve a intentarlo.</string>
 </resources>

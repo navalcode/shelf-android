@@ -11,7 +11,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import dev.navalcode.shelf.domain.*
-import java.io.IOException
 import org.junit.Rule
 import org.junit.Test
 
@@ -53,7 +52,7 @@ class ShelfJourneyTest {
     }
     @Test fun errorRetryAndClearRecover() {
         var calls = 0
-        start { if (++calls == 1) throw IOException("offline"); SearchResult(listOf(book), ResultSource.NETWORK) }
+        start { if (++calls == 1) throw SearchException(SearchFailureKind.NETWORK); SearchResult(listOf(book), ResultSource.NETWORK) }
         rule.onNodeWithTag("search_input").performTextInput("orchard")
         rule.waitUntil(5_000) { model.state.value.content is SearchContent.Failed }
         closeSoftKeyboard()

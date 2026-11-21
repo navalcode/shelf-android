@@ -12,6 +12,7 @@ data class Book(
 enum class ResultSource { NETWORK, CACHE }
 data class SearchResult(val books: List<Book>, val source: ResultSource)
 
+/** Searches may throw SearchException; coroutine cancellation is always propagated unchanged. */
 fun interface BookRepository {
     suspend fun search(query: String): SearchResult
 }
@@ -27,3 +28,8 @@ class SearchBooks(private val repository: BookRepository) {
     }
     companion object { const val MAX_QUERY_LENGTH = 120 }
 }
+
+/** Stable application errors; transport and parser details belong to Data. */
+enum class SearchFailureKind { NETWORK, RATE_LIMIT, SERVICE, INVALID_DATA }
+class SearchException(val kind: SearchFailureKind, cause: Throwable? = null) :
+    Exception(kind.name, cause)

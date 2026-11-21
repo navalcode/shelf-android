@@ -4,14 +4,12 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dev.navalcode.shelf.domain.*
-import java.io.IOException
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
 
 sealed interface SearchContent {
     data object Idle : SearchContent
@@ -19,7 +17,7 @@ sealed interface SearchContent {
     data class Results(val result: SearchResult) : SearchContent
     data class Failed(val reason: Failure) : SearchContent
 }
-enum class Failure { NETWORK, RATE_LIMIT, SERVICE, INVALID_QUERY, UNEXPECTED }
+enum class Failure { NETWORK, RATE_LIMIT, SERVICE, INVALID_DATA, INVALID_QUERY, UNEXPECTED }
 data class SearchState(val query: String = "", val content: SearchContent = SearchContent.Idle)
 
 class SearchViewModel(
@@ -69,8 +67,12 @@ class SearchViewModel(
             } catch (cancelled: CancellationException) { throw cancelled
             } catch (error: Exception) {
                 if (ticket == generation) mutable.value = SearchState(query, SearchContent.Failed(when (error) {
-                    is HttpException -> if (error.code() == 429) Failure.RATE_LIMIT else Failure.SERVICE
-                    is IOException -> Failure.NETWORK
+                    is SearchException -> when (error.kind) {
+                        SearchFailureKind.NETWORK -> Failure.NETWORK
+                        SearchFailureKind.RATE_LIMIT -> Failure.RATE_LIMIT
+                        SearchFailureKind.SERVICE -> Failure.SERVICE
+                        SearchFailureKind.INVALID_DATA -> Failure.INVALID_DATA
+                    }
                     else -> Failure.UNEXPECTED
                 }))
             }

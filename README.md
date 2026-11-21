@@ -33,6 +33,6 @@ The UI has local Manrope typography, Spanish resources, English fallback, system
 
 ## Tests and license
 
-Deterministic tests cover domain delegation, exact cache expiry, canonical keys, LRU, errors, cancellation, the real Retrofit HTTP contract via MockWebServer, debounce and late-response rejection. Compose journeys use an original fictional book fixture; they do not depend on the public service. Live API checks are recorded separately in verification.
+Deterministic tests cover domain delegation, exact cache expiry, canonical keys, LRU, errors, cancellation, the real Retrofit HTTP contract via MockWebServer, debounce and late-response rejection. Four Compose journeys and two production-entry integrations use original fictional fixtures. The latter launch MainActivity with the real application graph, Retrofit and cache, replacing only HTTP responses; they also check errors and activity recreation. No automated test depends on the public service. Live API checks are recorded separately in verification.
 
 Original code is available under the MIT license. Third-party notices are in [THIRD_PARTY.md](THIRD_PARTY.md).

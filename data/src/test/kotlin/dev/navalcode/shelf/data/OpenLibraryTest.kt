@@ -1,5 +1,7 @@
 package dev.navalcode.shelf.data
 
+import dev.navalcode.shelf.domain.SearchException
+import dev.navalcode.shelf.domain.SearchFailureKind
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicReference
@@ -12,7 +14,7 @@ import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.Assert.*
 import org.junit.Test
-import retrofit2.HttpException
+import retrofit2.Response
 import retrofit2.Retrofit
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -38,20 +40,53 @@ class OpenLibraryTest {
             assertNull(book.firstPublished); assertNull(book.editionCount); assertTrue(book.authors.isEmpty())
         }
     }
-    @Test fun `invalid payload is rejected instead of cached as empty success`() = runBlocking {
+    @Test fun `invalid payload never becomes cached empty success and next request can recover`() = runBlocking {
         MockWebServer().use { server ->
-            for (body in listOf("{}", "{\"docs\":[null]}", "{\"docs\":[{\"key\":\"invalid\",\"title\":\"A\"}]}")) {
+            val invalid = listOf("{}", "{\"docs\":[null]}",
+                "{\"docs\":[{\"key\":\"invalid\",\"title\":\"A\"}]}",
+                "{\"docs\":[{\"key\":\"/works/OL1W\",\"title\":\"  \"}]}",
+                "{\"docs\":42}", "{\"docs\":[", "<html>unavailable</html>")
+            for ((index, body) in invalid.withIndex()) {
                 server.enqueue(MockResponse().setBody(body))
-                try { source(server).search("a"); fail(body) } catch (_: IOException) { }
+                server.enqueue(MockResponse().setBody(json))
+                val repository = CachedBookRepository(source(server), { 0 })
+                try { repository.search("query$index"); fail(body) }
+                catch (error: SearchException) { assertEquals(body, SearchFailureKind.INVALID_DATA, error.kind) }
+                assertEquals("A book", repository.search("query$index").books.single().title)
             }
+            assertEquals(invalid.size * 2, server.requestCount)
         }
     }
-    @Test fun `HTTP errors are preserved`() = runBlocking {
+    @Test fun `HTTP statuses become stable domain failures and are not cached`() = runBlocking {
         MockWebServer().use { server ->
             for (code in listOf(429, 503)) {
                 server.enqueue(MockResponse().setResponseCode(code))
-                try { source(server).search("a"); fail() } catch (error: HttpException) { assertEquals(code, error.code()) }
+                server.enqueue(MockResponse().setBody(json))
+                val repository = CachedBookRepository(source(server), { 0 })
+                try { repository.search("a"); fail() } catch (error: SearchException) {
+                    assertEquals(if (code == 429) SearchFailureKind.RATE_LIMIT else SearchFailureKind.SERVICE, error.kind)
+                }
+                assertEquals("A book", repository.search("a").books.single().title)
             }
+            assertEquals(4, server.requestCount)
+        }
+    }
+    @Test fun `empty successful HTTP body is invalid data`() = runBlocking {
+        MockWebServer().use { server ->
+            server.enqueue(MockResponse().setResponseCode(204))
+            try { source(server).search("a"); fail() }
+            catch (error: SearchException) { assertEquals(SearchFailureKind.INVALID_DATA, error.kind) }
+        }
+    }
+    @Test fun `transport IOException becomes network failure with cause retained`() = runTest {
+        val offline = IOException("offline")
+        val api = object : OpenLibraryApi {
+            override suspend fun search(query: String, limit: Int, fields: String): Response<SearchDto> = throw offline
+        }
+        try { OpenLibrarySource(api, { 0 }, 0).search("a"); fail() }
+        catch (error: SearchException) {
+            assertEquals(SearchFailureKind.NETWORK, error.kind)
+            assertSame(offline, error.cause)
         }
     }
     @Test fun `cancelling coroutine cancels Retrofit call`() = runBlocking {
@@ -75,9 +110,9 @@ class OpenLibraryTest {
     @Test fun `source spaces requests and waiting request remains cancellable`() = runTest {
         val starts = mutableListOf<Long>()
         val api = object : OpenLibraryApi {
-            override suspend fun search(query: String, limit: Int, fields: String): SearchDto {
+            override suspend fun search(query: String, limit: Int, fields: String): Response<SearchDto> {
                 starts += testScheduler.currentTime
-                return SearchDto(emptyList())
+                return Response.success(SearchDto(emptyList()))
             }
         }
         val source = OpenLibrarySource(api, { testScheduler.currentTime })

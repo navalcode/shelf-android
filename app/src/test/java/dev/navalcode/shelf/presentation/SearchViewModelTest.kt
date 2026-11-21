@@ -2,7 +2,6 @@ package dev.navalcode.shelf.presentation
 
 import androidx.lifecycle.SavedStateHandle
 import dev.navalcode.shelf.domain.*
-import java.io.IOException
 import kotlinx.coroutines.*
 import kotlinx.coroutines.test.*
 import org.junit.After
@@ -53,7 +52,7 @@ class SearchViewModelTest {
     }
     @Test fun `network failure is retryable and retry does not debounce`() = runTest(dispatcher) {
         var calls = 0
-        val model = SearchViewModel(SearchBooks { if (++calls == 1) throw IOException(); result() }, SavedStateHandle())
+        val model = SearchViewModel(SearchBooks { if (++calls == 1) throw SearchException(SearchFailureKind.NETWORK); result() }, SavedStateHandle())
         model.edit("book"); advanceUntilIdle()
         assertEquals(SearchContent.Failed(Failure.NETWORK), model.state.value.content)
         model.retry(); runCurrent()
@@ -77,5 +76,36 @@ class SearchViewModelTest {
         model.edit("x".repeat(121)); advanceUntilIdle()
         assertEquals(1, calls)
         assertEquals(SearchContent.Failed(Failure.INVALID_QUERY), model.state.value.content)
+    }
+    @Test fun `domain failures produce distinct presentation states`() = runTest(dispatcher) {
+        val cases = mapOf(
+            SearchFailureKind.RATE_LIMIT to Failure.RATE_LIMIT,
+            SearchFailureKind.SERVICE to Failure.SERVICE,
+            SearchFailureKind.INVALID_DATA to Failure.INVALID_DATA,
+        )
+        for ((kind, expected) in cases) {
+            val model = SearchViewModel(SearchBooks { throw SearchException(kind) }, SavedStateHandle())
+            model.edit("book"); advanceUntilIdle()
+            assertEquals(SearchContent.Failed(expected), model.state.value.content)
+        }
+    }
+    @Test fun `unexpected failures remain separate from connectivity`() = runTest(dispatcher) {
+        val model = SearchViewModel(SearchBooks { error("unexpected") }, SavedStateHandle())
+        model.edit("book"); advanceUntilIdle()
+        assertEquals(SearchContent.Failed(Failure.UNEXPECTED), model.state.value.content)
+    }
+    @Test fun `obsolete failure cannot overwrite a newer success`() = runTest(dispatcher) {
+        val release = CompletableDeferred<Unit>()
+        val model = SearchViewModel(SearchBooks {
+            if (it == "old") {
+                withContext(NonCancellable) { release.await() }
+                throw SearchException(SearchFailureKind.SERVICE)
+            }
+            result(it)
+        }, SavedStateHandle())
+        model.edit("old"); advanceTimeBy(400); runCurrent()
+        model.edit("new"); advanceTimeBy(400); runCurrent()
+        release.complete(Unit); runCurrent()
+        assertEquals("new", (model.state.value.content as SearchContent.Results).result.books.single().title)
     }
 }

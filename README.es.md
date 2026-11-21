@@ -33,6 +33,6 @@ Tipografía Manrope local, recursos españoles con fallback inglés, modo oscuro
 
 ## Pruebas y licencia
 
-Pruebas deterministas de delegación Domain, expiración exacta, claves, LRU, fallos, cancelación, contrato Retrofit con MockWebServer, debounce y respuestas tardías. Los recorridos Compose usan un libro ficticio original y no dependen del servicio público. La red real tiene evidencia separada.
+Pruebas deterministas de delegación Domain, expiración exacta, claves, LRU, fallos, cancelación, contrato Retrofit con MockWebServer, debounce y respuestas tardías. Cuatro recorridos Compose y dos integraciones desde MainActivity usan datos ficticios originales. Las integraciones conservan el grafo real, Retrofit y caché y sustituyen solo las respuestas HTTP; comprueban también errores y recreación de la Activity. Ningún test automatizado depende del servicio público. La red real tiene evidencia separada.
 
 El código original se distribuye con licencia MIT. Los avisos de terceros están en [THIRD_PARTY.md](THIRD_PARTY.md).

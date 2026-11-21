@@ -127,6 +127,7 @@ private fun SearchFailure(reason: Failure, retry: () -> Unit) {
             Failure.NETWORK -> R.string.network_error
             Failure.RATE_LIMIT -> R.string.rate_error
             Failure.SERVICE -> R.string.service_error
+            Failure.INVALID_DATA -> R.string.data_error
             Failure.INVALID_QUERY -> R.string.query_error
             Failure.UNEXPECTED -> R.string.unexpected_error
         }), color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodyLarge)

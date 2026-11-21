@@ -1,11 +1,18 @@
 package dev.navalcode.shelf.data
 
+import com.google.gson.JsonParseException
 import com.google.gson.annotations.SerializedName
+import com.google.gson.stream.MalformedJsonException
 import dev.navalcode.shelf.domain.Book
+import dev.navalcode.shelf.domain.SearchException
+import dev.navalcode.shelf.domain.SearchFailureKind
+import java.io.EOFException
 import java.io.IOException
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -17,7 +24,7 @@ interface OpenLibraryApi {
         @Query("q") query: String,
         @Query("limit") limit: Int = 20,
         @Query("fields") fields: String = "key,title,author_name,first_publish_year,edition_count",
-    ): SearchDto
+    ): Response<SearchDto>
 }
 data class SearchDto(@SerializedName("docs") val docs: List<BookDto?>? = null)
 data class BookDto(
@@ -39,13 +46,29 @@ class OpenLibrarySource(
     override suspend fun search(query: String): List<Book> = gate.withLock {
         lastStart?.let { delay((intervalMillis - (clock.millis() - it)).coerceAtLeast(0)) }
         lastStart = clock.millis()
-        val docs = api.search(query).docs ?: throw IOException("Missing search document list")
+        val response = try {
+            api.search(query)
+        } catch (cancelled: CancellationException) {
+            throw cancelled
+        } catch (error: JsonParseException) {
+            throw SearchException(SearchFailureKind.INVALID_DATA, error)
+        } catch (error: MalformedJsonException) {
+            throw SearchException(SearchFailureKind.INVALID_DATA, error)
+        } catch (error: EOFException) {
+            throw SearchException(SearchFailureKind.INVALID_DATA, error)
+        } catch (error: IOException) {
+            throw SearchException(SearchFailureKind.NETWORK, error)
+        }
+        if (!response.isSuccessful) {
+            throw SearchException(if (response.code() == 429) SearchFailureKind.RATE_LIMIT else SearchFailureKind.SERVICE)
+        }
+        val docs = response.body()?.docs ?: throw SearchException(SearchFailureKind.INVALID_DATA)
         val books = docs.map { dto ->
-            dto ?: throw IOException("Null search document")
+            dto ?: throw SearchException(SearchFailureKind.INVALID_DATA)
             val id = dto.key?.takeIf { it.matches(Regex("/works/OL[0-9]+W")) }
-                ?: throw IOException("Invalid work identifier")
+                ?: throw SearchException(SearchFailureKind.INVALID_DATA)
             val title = dto.title?.trim()?.takeIf { it.isNotEmpty() }
-                ?: throw IOException("Missing book title")
+                ?: throw SearchException(SearchFailureKind.INVALID_DATA)
             Book(id, title, dto.authors.orEmpty().mapNotNull { it?.trim()?.takeIf(String::isNotEmpty) },
                 dto.year, dto.editions?.takeIf { it >= 0 })
         }
