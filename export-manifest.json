@@ -26,11 +26,11 @@
     },
     {
       "path": "README.es.md",
-      "sha256": "4e6279d6327feb65819ba2d5109a8e006b0c5f9684726bd95a42fbfe8cd4a8ea"
+      "sha256": "c176d1698cff17901a707855254dfde13ec45c39d0360d3efaa110f9a259bf0b"
     },
     {
       "path": "README.md",
-      "sha256": "950720e69f2ae2d095f685ba5effc7dc9f56ef35a867669a0d74cd4b130bc88b"
+      "sha256": "10025ef6d69fec07b77624dfd4076bfea9f5a5207d958fe56a881f1eb1ac166b"
     },
     {
       "path": "THIRD_PARTY.md",
@@ -198,7 +198,7 @@
     },
     {
       "path": "docs/ARCHITECTURE.md",
-      "sha256": "2ec75917c76192d5059d248255d487448562e83e8e493940ae0fd0e986cb8715"
+      "sha256": "dbf0f18a656dc75e6be7022b9de2f5c985fec733e52962882dad8f2c62cdf642"
     },
     {
       "path": "docs/RUNTIME_VALIDATION.md",
@@ -210,7 +210,7 @@
     },
     {
       "path": "docs/VERIFICATION.md",
-      "sha256": "847bdd1770b5dda3a97361c850f5176e80bd5a5cb7ef8c6e9e247611db21855c"
+      "sha256": "04cc75f7ef14ddd6a915d445427dabc09fbd98ed522809bb96211c07e26c65df"
     },
     {
       "path": "docs/evidence/emulator-frame-metrics.json",
