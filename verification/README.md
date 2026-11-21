@@ -29,7 +29,7 @@ A different launch intent can create a new activity instead of restoring the ret
 
 ## Readability gate
 
-`python3 verification/format_kotlin.py --check` checks Kotlin and Gradle Kotlin files with ktfmt0.65 and Kotlin's four-space style. Omit `--check` to format. The tool verifies the pinned SHA-256 on every use; `--jar PATH` supports an already downloaded/offline copy. It caches only in ignored `.gradle/verification-tools`. CI also runs six unit tests for native frame-evidence interpretation.
+`python3 verification/format_kotlin.py --check` checks Kotlin and Gradle Kotlin files with ktfmt 0.65 and Kotlin's four-space style. Omit `--check` to format. The tool verifies the pinned SHA-256 on every use; `--jar PATH` supports an already downloaded/offline copy. It caches only in ignored `.gradle/verification-tools`. CI also runs six unit tests for native frame-evidence interpretation.
 
 ## Same-certificate optimized runtime probe
 
@@ -43,9 +43,9 @@ python3 verification/build_runtime_probe.py --sdk "$ANDROID_HOME" --keystore "$S
 python3 verification/run_runtime_probe.py --serial emulator-5554 --app-apk "$SHELF_QA_DIR/shelf.apk" --probe-apk "$SHELF_QA_DIR/probe/shelf-runtime-probe.apk" --output .local/signed-runtime
 ```
 
-The caller verifies installed APK bytes, installs only the separate probe and explicitly foregrounds Shelf once after instrumentation initializes. It never uninstalls Shelf. The probe preserves existing accessibility services, considers only Shelf while its window has focus, checks the accessible search input and records native output. CI runs this startup-only check without public HTTP on API26/API35.
+The caller verifies installed APK bytes, installs only the separate probe and explicitly foregrounds Shelf once after instrumentation initializes. It never uninstalls Shelf. The probe preserves existing accessibility services, considers only Shelf while its window has focus, checks the accessible search input and records native output. CI runs this startup-only check without public HTTP on API 26/API 35.
 
-Add `--journey --cycles 20` for a separate native measurement on an explicitly selected emulator or device with the live API: Dune search, three unmeasured navigation warm-ups, then20 detail/Back round trips. `Window.OnFrameMetricsAvailableListener` collects actual rendering duration and each frame's deadline (API31+); it excludes first-draw frames. Native screenshots and an own-package accessibility tree accompany the result. Accessibility hierarchy inspection happens after each450ms transition settle, not as animation sampling. Per-frame phase durations help distinguish draw/layout work from buffer/GPU waits. The test deliberately uses real navigation actions without a Compose test clock. It is instrumentation-assisted and measures one warmed route, not an unattended general-device certification.
+Add `--journey --cycles 20` for a separate native measurement on an explicitly selected emulator or device with the live API: Dune search, three unmeasured navigation warm-ups, then20 detail/Back round trips. `Window.OnFrameMetricsAvailableListener` collects actual rendering duration and each frame's deadline (API31+); it excludes first-draw frames. Native screenshots and an own-package accessibility tree accompany the result. Accessibility hierarchy inspection happens after each 450 ms transition settle, not as animation sampling. Per-frame phase durations help distinguish draw/layout work from buffer/GPU waits. The test deliberately uses real navigation actions without a Compose test clock. It is instrumentation-assisted and measures one warmed route, not an unattended general-device certification.
 
 ```sh
 python3 verification/summarize_frame_metrics.py .local/signed-runtime/result.json --output .local/signed-runtime/summary.json

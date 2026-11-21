@@ -4,9 +4,9 @@ The readability follow-up keeps the same product behavior and UI geometry. Kotli
 
 ## Executed emulator route
 
-The installed optimized APK uses R8/resource shrinking and a temporary QA certificate. On the owned Android17/API37 arm64 emulator, both the external cold-launch inspector and a separate same-certificate platform probe expose the actual accessible search input. The probe retains the production Application, Retrofit, repository/cache and ViewModel graph; its live Dune journey opens detail and returns through real accessibility actions.
+The installed optimized APK uses R8/resource shrinking and a temporary QA certificate. On the owned Android 17/API 37 arm64 emulator, both the external cold-launch inspector and a separate same-certificate platform probe expose the actual accessible search input. The probe retains the production Application, Retrofit, repository/cache and ViewModel graph; its live Dune journey opens detail and returns through real accessibility actions.
 
-The final measured run used a360×640dp window, English/light/font1.0, system animation scales1, and host GPU acceleration on Apple M1 Pro. Three round trips warmed the route;20 subsequent round trips completed successfully. Hierarchy inspection occurs after each450ms transition settle. FrameMetrics callbacks observe real platform rendering without a Compose test clock. The callback queue is drained before serialization; no metric reports were dropped.
+The final measured run used a 360 × 640 dp window, English/light/font 1.0, system animation scales 1, and host GPU acceleration on Apple M1 Pro. Three round trips warmed the route; 20 subsequent round trips completed successfully. Hierarchy inspection occurs after each 450 ms transition settle. FrameMetrics callbacks observe real platform rendering without a Compose test clock. The callback queue is drained before serialization; no metric reports were dropped.
 
 | Measurement | Result |
 | --- | --- |
@@ -20,7 +20,7 @@ The final measured run used a360×640dp window, English/light/font1.0, system an
 
 These are separate percentiles, not components to add together. TOTAL_DURATION/deadline exceedance is reported unchanged; it is not a claim of zero jank or hardware FPS. The comparatively high buffer/GPU phases are consistent with a cost in the virtual graphics pipeline; this is an inference, not isolation of the cause. Layout/draw results provide no reason to remove useful behavior just to improve an emulator number. Physical-device performance remains a different validation.
 
-The first run used hierarchy polling during transition and recorded7.386% deadline exceedance. Moving inspection until after settling recorded7.727%; the final phase-instrumented run recorded7.614%. The change did not establish that polling caused the overruns. An earlier SwiftShader run was only a harness check and is not comparable to these host-GPU runs.
+The first run used hierarchy polling during transition and recorded 7.386% deadline exceedance. Moving inspection until after settling recorded 7.727%; the final phase-instrumented run recorded 7.614%. The change did not establish that polling caused the overruns. An earlier SwiftShader run was only a harness check and is not comparable to these host-GPU runs.
 
 [Native samples and conditions](evidence/emulator-frame-metrics.json) preserve all rendering samples. [Derived summary](evidence/emulator-frame-summary.json) is reproducible:
 
@@ -33,8 +33,10 @@ The six evidence-parser tests distinguish unavailable deadlines/GPU values from 
 
 ## TalkBack
 
-TalkBack17 is enabled in the owned emulator, with touch exploration and spoken-feedback service bound without a reported service crash. Human confirmation of announcements and the search/detail/Back journey is pending. This setup state is not presented as a passed human test. It changes no settings on the physical phone.
+TalkBack 17 was enabled in the owned emulator in Spanish, with touch exploration and spoken-feedback service bound without a reported service crash. Manuel completed the human search/Dune/detail/Back journey and explicitly confirmed correct announcements and navigation, with the query preserved. This is a tester-confirmed route on that emulator, not formal accessibility conformance or a physical-device claim. The prior accessibility state was restored afterwards; Shelf remains installed and open. The physical phone was left unchanged.
 
 ## Hosted checks
 
-The follow-up's first hosted attempt passed build and API26, including optimized startup and the signed probe. API35 received Maven Central HTTP429 while resolving UTP dependencies before tests. The failed job is retried without weakening assertions; final hosted identity/result will be recorded in [Verification](VERIFICATION.md).
+[Run 44901113590](https://github.com/navalcode/shelf-android/actions/workflows/checks.yml) passed at attempt 1 on `previous source revision`:32 JVM tests, six evidence-parser tests, formatting/lint/build, nine native cases and external/signed optimized-startup checks on each API 26/API 35. Downloaded reports confirm no native failures or skips and matching optimized APK bytes between both inspection paths and API jobs.
+
+The preceding follow-up run 44899700421 passed at attempt 2. Its first API 35 job received Maven Central HTTP 429 resolving UTP dependencies before tests; the failed job was retried without weakening assertions. [Verification](VERIFICATION.md) records runtime identity and the subsequent documentation-only delta.
