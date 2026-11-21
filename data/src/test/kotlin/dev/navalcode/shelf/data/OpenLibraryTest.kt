@@ -2,6 +2,10 @@ package dev.navalcode.shelf.data
 
 import java.io.IOException
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicReference
+import okhttp3.Call
+import okhttp3.EventListener
+import okhttp3.OkHttpClient
 import kotlinx.coroutines.*
 import kotlinx.coroutines.test.*
 import okhttp3.mockwebserver.MockResponse
@@ -11,6 +15,7 @@ import org.junit.Test
 import retrofit2.HttpException
 import retrofit2.Retrofit
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class OpenLibraryTest {
     private val json = """{"docs":[{"key":"/works/OL1W","title":"A book","author_name":["A"],"first_publish_year":1999,"edition_count":3}]}"""
     private fun source(server: MockWebServer) = OpenLibrarySource(openLibraryApi(Retrofit.Builder().baseUrl(server.url("/"))), { 0 }, 0)
@@ -52,10 +57,17 @@ class OpenLibraryTest {
     @Test fun `cancelling coroutine cancels Retrofit call`() = runBlocking {
         MockWebServer().use { server ->
             server.enqueue(MockResponse().setBody(json).setBodyDelay(1, TimeUnit.SECONDS))
-            val job = launch(Dispatchers.Default) { source(server).search("old") }
+            val observed = AtomicReference<Call>()
+            val client = OkHttpClient.Builder().eventListenerFactory { call ->
+                observed.set(call)
+                EventListener.NONE
+            }.build()
+            val source = OpenLibrarySource(openLibraryApi(Retrofit.Builder().baseUrl(server.url("/")).client(client)), { 0 }, 0)
+            val job = launch(Dispatchers.Default) { source.search("old") }
             withContext(Dispatchers.IO) { assertNotNull(server.takeRequest(2, TimeUnit.SECONDS)) }
             job.cancelAndJoin()
             assertTrue(job.isCancelled)
+            assertTrue("Underlying HTTP call must be cancelled", observed.get().isCanceled())
             server.enqueue(MockResponse().setBody(json))
             assertEquals("A book", source(server).search("new").single().title)
         }

@@ -1,5 +1,7 @@
 # Architecture and review guide
 
+[Acceptance contract](SPEC.md) maps each behavior to its test or explicit validation limit.
+
 ```text
 app (Compose → SearchViewModel → SearchBooks)
  ↓                                      ↓

@@ -7,6 +7,7 @@ import kotlinx.coroutines.test.*
 import org.junit.Assert.*
 import org.junit.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class CachedBookRepositoryTest {
     private val book = Book("/works/OL1W", "Original", listOf("A"), 2001, 2)
     @Test fun `canonical query is cache key and valid hit performs no network`() = runTest {

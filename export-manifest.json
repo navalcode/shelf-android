@@ -2,7 +2,7 @@
   "files": [
     {
       "path": ".github/workflows/checks.yml",
-      "sha256": "bf40eccdb531f87b941588a8b06012a15505d280a846ff86b399a158a87919a9"
+      "sha256": "2536d97ca7183915fc5219efffae478da0a0c1faffbd28baf43e5c002c3ccde5"
     },
     {
       "path": ".gitignore",
@@ -94,19 +94,23 @@
     },
     {
       "path": "data/src/test/kotlin/dev/navalcode/shelf/data/CachedBookRepositoryTest.kt",
-      "sha256": "4bc9338425cee288093c544f43505c973f7e3e7b600c2af7fd8905032d684192"
+      "sha256": "85e9503d9388aacc74cb5c325d1965e5202e96739e69f71db080ea3a843ee1aa"
     },
     {
       "path": "data/src/test/kotlin/dev/navalcode/shelf/data/OpenLibraryTest.kt",
-      "sha256": "ed81c2037885372cca310a6ea4009abd06bbb2aa8ad727d51cbb54dfe2e2b65a"
+      "sha256": "47b20e39d01614937d8ef7cd94fb8da0a1d336098ea25d23afeed099fd1278f8"
     },
     {
       "path": "docs/ARCHITECTURE.md",
-      "sha256": "5659c9486b8a40226e75146a14d6fa4bcf252a0091636a96a7401fbb63f450a3"
+      "sha256": "0ac486f057cc2917872e1c4c2c668cb711a90df80d94c39ce5644df15b52c2da"
+    },
+    {
+      "path": "docs/SPEC.md",
+      "sha256": "39aea0ad7a67f1c8bd1899438dea1656fcd206c3dc13c08ddeb3083b7059b193"
     },
     {
       "path": "docs/VERIFICATION.md",
-      "sha256": "558eebeea4a79841da3ac27923f41dc72f501922af617df0ff9e3addf07b2473"
+      "sha256": "a81f938e7d6db1fa8a8380abfe37f9fe625b1844e37a7b663c41ded5c618f749"
     },
     {
       "path": "domain/build.gradle.kts",
