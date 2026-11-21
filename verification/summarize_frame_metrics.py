@@ -32,6 +32,20 @@ def summarize(report):
         "dropped_frame_metric_reports": report["dropped_frame_metric_reports"],
         "scope": report["limits"],
     }
+    if "environment" in report:
+        result["environment"] = report["environment"]
+    if "phase_columns" in report or "phase_frames" in report:
+        columns = report.get("phase_columns", [])
+        phases = report.get("phase_frames", [])
+        if not columns or len(phases) != len(frames) or any(len(row) != len(columns) for row in phases):
+            raise ValueError("Phase samples must correspond to the same measured frames")
+        result["phases_ms"] = {}
+        for index, name in enumerate(columns):
+            known_values = sorted(row[index] / 1_000_000 for row in phases if row[index] >= 0)
+            result["phases_ms"][name.removesuffix("_ns")] = {
+                "known_samples": len(known_values),
+                "p95": round(known_values[math.ceil(len(known_values) * .95) - 1], 3) if known_values else None,
+            }
     return result
 
 

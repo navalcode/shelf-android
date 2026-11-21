@@ -24,11 +24,14 @@ import java.io.FileOutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /** Observes the installed R8 app through public Android APIs, without replacing its graph. */
 public final class RuntimeProbe extends Instrumentation {
     private static final String PACKAGE = "dev.navalcode.shelf";
     private final List<long[]> frames = new CopyOnWriteArrayList<>();
+    private final List<long[]> phases = new CopyOnWriteArrayList<>();
     private final HandlerThread metricsThread = new HandlerThread("shelf-frame-metrics");
     private volatile Activity activity;
     private volatile boolean measuring;
@@ -47,6 +50,20 @@ public final class RuntimeProbe extends Instrumentation {
                             frame.getMetric(FrameMetrics.INTENDED_VSYNC_TIMESTAMP),
                             frame.getMetric(FrameMetrics.TOTAL_DURATION),
                             deadline
+                        });
+                phases.add(
+                        new long[] {
+                            frame.getMetric(FrameMetrics.UNKNOWN_DELAY_DURATION),
+                            frame.getMetric(FrameMetrics.INPUT_HANDLING_DURATION),
+                            frame.getMetric(FrameMetrics.ANIMATION_DURATION),
+                            frame.getMetric(FrameMetrics.LAYOUT_MEASURE_DURATION),
+                            frame.getMetric(FrameMetrics.DRAW_DURATION),
+                            frame.getMetric(FrameMetrics.SYNC_DURATION),
+                            frame.getMetric(FrameMetrics.COMMAND_ISSUE_DURATION),
+                            frame.getMetric(FrameMetrics.SWAP_BUFFERS_DURATION),
+                            Build.VERSION.SDK_INT >= 31
+                                    ? frame.getMetric(FrameMetrics.GPU_DURATION)
+                                    : -1
                         });
                 droppedReports += dropped;
             };
@@ -129,11 +146,16 @@ public final class RuntimeProbe extends Instrumentation {
                 waitForBook(35_000);
                 for (int i = 0; i < 3; i++) roundTrip(); // Unmeasured warm-up.
                 frames.clear();
+                phases.clear();
                 droppedReports = 0;
                 measuring = true;
                 long started = SystemClock.elapsedRealtime();
                 for (int i = 0; i < cycles; i++) roundTrip();
                 measuring = false;
+                CountDownLatch drained = new CountDownLatch(1);
+                new Handler(metricsThread.getLooper()).post(drained::countDown);
+                if (!drained.await(5, TimeUnit.SECONDS))
+                    throw new IllegalStateException("Frame callbacks did not drain");
                 report.put("measurement_elapsed_ms", SystemClock.elapsedRealtime() - started);
                 report.put("round_trips", cycles);
                 report.put("warmup_round_trips", 3);
@@ -142,7 +164,7 @@ public final class RuntimeProbe extends Instrumentation {
                 report.put(
                         "metric",
                         "Window.OnFrameMetricsAvailableListener; TOTAL_DURATION and per-frame"
-                            + " DEADLINE");
+                                + " DEADLINE");
                 JSONArray samples = new JSONArray();
                 for (long[] frame : frames)
                     samples.put(new JSONArray().put(frame[0]).put(frame[1]).put(frame[2]));
@@ -155,6 +177,25 @@ public final class RuntimeProbe extends Instrumentation {
                                 .put("total_duration_ns")
                                 .put("deadline_ns"));
                 report.put("frames", samples);
+                report.put(
+                        "phase_columns",
+                        new JSONArray()
+                                .put("unknown_delay_ns")
+                                .put("input_ns")
+                                .put("animation_ns")
+                                .put("layout_measure_ns")
+                                .put("draw_ns")
+                                .put("sync_ns")
+                                .put("command_issue_ns")
+                                .put("swap_buffers_ns")
+                                .put("gpu_ns"));
+                JSONArray phaseSamples = new JSONArray();
+                for (long[] phase : phases) {
+                    JSONArray values = new JSONArray();
+                    for (long value : phase) values.put(value);
+                    phaseSamples.put(values);
+                }
+                report.put("phase_frames", phaseSamples);
                 report.put(
                         "limits",
                         "Warm navigation of one live-API book on one device."
@@ -228,12 +269,12 @@ public final class RuntimeProbe extends Instrumentation {
         AccessibilityNodeInfo book = waitForBook(5_000);
         if (!book.performAction(AccessibilityNodeInfo.ACTION_CLICK))
             throw new IllegalStateException("Book action rejected");
+        Thread.sleep(450); // Inspect the settled state, not the hierarchy during animation.
         waitForNode("detail_screen", 5_000);
-        Thread.sleep(450);
         if (!waitForNode("back", 5_000).performAction(AccessibilityNodeInfo.ACTION_CLICK))
             throw new IllegalStateException("Back action rejected");
-        waitForNode("search_input", 5_000);
         Thread.sleep(450);
+        waitForNode("search_input", 5_000);
     }
 
     private JSONArray describeTree(AccessibilityNodeInfo node) throws Exception {

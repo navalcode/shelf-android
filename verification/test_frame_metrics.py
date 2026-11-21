@@ -29,6 +29,19 @@ class FrameMetricsTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 summarize(self.report(frames))
 
+    def test_phase_batches_cannot_be_mixed_with_different_frames(self):
+        report = self.report([[0, 20_000_000, 33_333_333]])
+        report.update(phase_columns=["draw_ns"], phase_frames=[])
+        with self.assertRaises(ValueError):
+            summarize(report)
+
+    def test_unavailable_gpu_phase_is_not_zero_duration(self):
+        report = self.report([[0, 20_000_000, 33_333_333]])
+        report.update(phase_columns=["gpu_ns"], phase_frames=[[-1]])
+        result = summarize(report)
+        self.assertIsNone(result["phases_ms"]["gpu"]["p95"])
+        self.assertEqual(0, result["phases_ms"]["gpu"]["known_samples"])
+
 
 if __name__ == "__main__":
     unittest.main()

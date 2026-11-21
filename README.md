@@ -20,7 +20,7 @@ python3 verification/format_kotlin.py --check
 ./gradlew :app:bundleRelease            # optimized, unsigned distribution bundle
 ```
 
-The debug APK is `app/build/outputs/apk/debug/app-debug.apk`. The release bundle has no production signing configuration. CI publishes a temporary debug APK and reports as workflow artifacts.
+The debug APK is `app/build/outputs/apk/debug/app-debug.apk`. The release bundle has no production signing configuration. CI publishes temporary debug and QA-signed optimized APKs, a separate signed runtime probe and test reports as workflow artifacts. [Runtime validation](verification/README.md).
 
 ## Decisions
 

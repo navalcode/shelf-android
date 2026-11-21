@@ -1,0 +1,58 @@
+{
+  "api": 37,
+  "round_trips": 20,
+  "warmup_round_trips": 3,
+  "measured_frames": 880,
+  "duration_ms": {
+    "p50": 17.506,
+    "p90": 21.316,
+    "p95": 23.696,
+    "p99": 34.954,
+    "max": 39.849
+  },
+  "percentile_method": "nearest rank",
+  "frames_with_known_deadline": 880,
+  "frames_exceeding_own_deadline": 67,
+  "over_deadline_percent": 7.614,
+  "dropped_frame_metric_reports": 0,
+  "scope": "Warm navigation of one live-API book on one device. Instrumentation/inspection overhead present; no universal FPS or cold-start benchmark.",
+  "environment": "Owned Android17/API37 arm64 emulator; host GPU acceleration, Apple M1 Pro; not physical Android hardware",
+  "phases_ms": {
+    "unknown_delay": {
+      "known_samples": 880,
+      "p95": 4.389
+    },
+    "input": {
+      "known_samples": 880,
+      "p95": 0.004
+    },
+    "animation": {
+      "known_samples": 880,
+      "p95": 2.39
+    },
+    "layout_measure": {
+      "known_samples": 880,
+      "p95": 0.052
+    },
+    "draw": {
+      "known_samples": 880,
+      "p95": 1.976
+    },
+    "sync": {
+      "known_samples": 880,
+      "p95": 0.463
+    },
+    "command_issue": {
+      "known_samples": 880,
+      "p95": 1.78
+    },
+    "swap_buffers": {
+      "known_samples": 880,
+      "p95": 13.264
+    },
+    "gpu": {
+      "known_samples": 880,
+      "p95": 18.216
+    }
+  }
+}

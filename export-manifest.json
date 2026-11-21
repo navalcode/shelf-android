@@ -1,6 +1,10 @@
 {
   "files": [
     {
+      "path": ".gitattributes",
+      "sha256": "fcd4ccb5c27a73942ab4c708ba6ba89646d2e85624052b0f5664e7c9e804371f"
+    },
+    {
       "path": ".github/workflows/checks.yml",
       "sha256": "a270e71aec08b5539e5250cc15a79a1ea1c593b105d6bda6534a3129165f306c"
     },
@@ -22,11 +26,11 @@
     },
     {
       "path": "README.es.md",
-      "sha256": "8f0dc133e7e84333475409c1b60d6038adbedec38b69af598f5100b123d64ed4"
+      "sha256": "4e6279d6327feb65819ba2d5109a8e006b0c5f9684726bd95a42fbfe8cd4a8ea"
     },
     {
       "path": "README.md",
-      "sha256": "3ec098f388558a37a42283bd6d71d3cb51f9def1c4a3d97f6ce4ba576aa615c9"
+      "sha256": "950720e69f2ae2d095f685ba5effc7dc9f56ef35a867669a0d74cd4b130bc88b"
     },
     {
       "path": "THIRD_PARTY.md",
@@ -197,12 +201,24 @@
       "sha256": "2ec75917c76192d5059d248255d487448562e83e8e493940ae0fd0e986cb8715"
     },
     {
+      "path": "docs/RUNTIME_VALIDATION.md",
+      "sha256": "0f247fd9a3353d5bf8455ceca43129cb63b49ca1ef123c05cd698b1f402b3cfe"
+    },
+    {
       "path": "docs/SPEC.md",
       "sha256": "aee60e76a542dfca8e655b7fa5896cf149fd78e6be4a17a176ffe86dbcf04ce1"
     },
     {
       "path": "docs/VERIFICATION.md",
-      "sha256": "95673216e25e21bac7703dc4d75608eed9f65744777874665013629e17a949f7"
+      "sha256": "b4633a11aca0bd50daa10c1dfae6372e506d0c265ddb43e46931a1e6381e8a68"
+    },
+    {
+      "path": "docs/evidence/emulator-frame-metrics.json",
+      "sha256": "d5f22b87feba2cc5c91e3cc12a16fb0df1d780d64a196af3064f1e2de01c8bb2"
+    },
+    {
+      "path": "docs/evidence/emulator-frame-summary.json",
+      "sha256": "6c3c9bc784523605a1ec24465e0e853921e640beca5e393fcb9f66c3602c12bd"
     },
     {
       "path": "docs/images/PROVENANCE.json",
@@ -274,7 +290,7 @@
     },
     {
       "path": "verification/README.md",
-      "sha256": "13da91760b7530d66b67cb2865af040b88ad491c14346f665c0b6eaa2537f84c"
+      "sha256": "ba4a1292f45ea80fdd62e5676ffca07a07dcb05fcfe2e53813c8a1d5deb8dce0"
     },
     {
       "path": "verification/android/AndroidManifest.xml",
@@ -282,7 +298,7 @@
     },
     {
       "path": "verification/android/RuntimeProbe.java",
-      "sha256": "efc0d6005e06c3943d5008cb5ab74868f565b90ff03fc90f390faa98bcadedae"
+      "sha256": "dd1721af9335669d066f93b7c476afeccf1214819b518665145211128041f2da"
     },
     {
       "path": "verification/android_runtime.py",
@@ -302,11 +318,11 @@
     },
     {
       "path": "verification/summarize_frame_metrics.py",
-      "sha256": "74bb209e45f76226def48f3447516356162101e6df0c62e05dd2a5f9135615c3"
+      "sha256": "aa022042b729d9f6bf281ac0cd8c0c711957d1b16db9a4f032ed3564402bb277"
     },
     {
       "path": "verification/test_frame_metrics.py",
-      "sha256": "48a5c637cab2004b07c6d98c7941e8c32a90cf4e7a235629602e0b335cc0d52e"
+      "sha256": "ea8b468bf05cce8735d27bff7b43d9a2e5f73d44db956550acb9132d729e2f42"
     }
   ]
 }

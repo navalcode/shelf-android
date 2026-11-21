@@ -20,7 +20,7 @@ python3 verification/format_kotlin.py --check
 ./gradlew :app:bundleRelease            # bundle optimizado sin firma de distribución
 ```
 
-APK debug: `app/build/outputs/apk/debug/app-debug.apk`. El bundle release no tiene configuración de firma de producción. CI adjunta temporalmente un APK debug y los informes.
+APK debug: `app/build/outputs/apk/debug/app-debug.apk`. El bundle release no tiene configuración de firma de producción. CI adjunta temporalmente APK debug y optimizada con firma QA, una sonda de ejecución separada y los informes. [Validación de ejecución](verification/README.md).
 
 ## Decisiones
 
