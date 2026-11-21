@@ -178,11 +178,11 @@
     },
     {
       "path": "docs/VERIFICATION.md",
-      "sha256": "67a363e1bfe3705834608c9386439c6fa33b2b829dc1dc6367c7d909bf02440e"
+      "sha256": "7727239173f59f1f632facb839f60b8f8441c99c0e6964d80332847ed6fc688b"
     },
     {
       "path": "docs/images/PROVENANCE.json",
-      "sha256": "a52e5c551e35283a932a4249abff4138c875df0a876e150a1c7679bb6363de5a"
+      "sha256": "9f8020d62539fa1f5b28377dd283885aded237be6e06cf41082d54d4b0c46020"
     },
     {
       "path": "docs/images/detail.png",

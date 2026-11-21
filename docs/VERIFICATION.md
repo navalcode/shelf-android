@@ -13,7 +13,7 @@
 | Live API | Production app searches Dune, opens its real bibliographic detail, returns and reuses a valid cached query. Separate HTTPS smoke check returned The Hobbit. Automated suites use controlled data instead. |
 | Artifact audit | Advisory release report: DEX 2.35 MB, R8 metadata present, four native ABIs aligned to 16 KB, no tool warnings. This does not verify Google Play policy or store approval. |
 
-The first release export was verified byte-for-byte against all 39 public blobs. Subsequent revisions are reviewed and rechecked before delivery. The final hosted run is linked through [CI](https://github.com/navalcode/shelf-android/actions/workflows/checks.yml); its completed result is recorded below after publication.
+The first release export was verified byte-for-byte against all 39 public blobs. Subsequent revisions are reviewed and rechecked before delivery. The final hosted result is recorded below and remains available through [CI](https://github.com/navalcode/shelf-android/actions/workflows/checks.yml).
 
 ## Attempts and limitations
 
@@ -24,3 +24,7 @@ The first release export was verified byte-for-byte against all 39 public blobs.
 - The first shared-bounds animation crossfaded incompatible line breaks, and Compose's test clock masked system duration settings. Final code renders a single identically typeset shared element and explicitly observes Android settings; disabled motion removes movement and delays.
 
 Minimum API 26, actual process termination/restoration, physical devices, release runtime, TalkBack, production signing and store distribution have no new runtime validation here. SavedStateHandle reconstruction is tested but is not an OS process-death test. Screenshots and the GIF have [explicit provenance](images/PROVENANCE.json); the GIF uses a fictional fixture and sampled test-clock frames, not real-time hardware footage. 
+
+## Hosted result
+
+[Run 44884887236](https://github.com/navalcode/shelf-android/actions/workflows/checks.yml) completed successfully on code commit `previous source revision`: both build and device jobs passed, including all four native cases on API 35. The final documentation-only commit preserves the tested runtime, tests, dependency declarations, assets and workflow exactly. The earlier bootstrap and failed/superseded attempts above remain part of the record.
