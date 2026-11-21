@@ -13,6 +13,7 @@ App nativa optimizada: apertura y búsqueda real. La navegación de reloj de tes
 Android Studio con **JDK 17**, Android SDK **36**, Build Tools **35.0.0** y emulador/dispositivo **API 26+**. Abrir este directorio, sincronizar Gradle y ejecutar `app`. Sin claves, cuentas, backend ni secretos. Los fallos de caché necesitan Internet; producción usa solo HTTPS.
 
 ```sh
+python3 verification/format_kotlin.py --check
 ./gradlew :app:assembleDebug
 ./gradlew :domain:test :data:test :app:testDebugUnitTest :app:lintDebug
 ./gradlew :app:connectedDebugAndroidTest  # un emulador/dispositivo conectado

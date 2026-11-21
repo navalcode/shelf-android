@@ -27,3 +27,5 @@ Gradle Wrapper scripts/JAR are from Gradle 8.14.6, Apache-2.0; its LICENSE and N
 
 [Manrope, Google Fonts source](https://github.com/google/fonts/tree/main/ofl/manrope): variable TTF blob `75274da58537d6123b14f2cd0c355ad4681fc2b3`, OFL blob `e271172a9ed0cddc895aabb6509f1c7d880b492d`. Static 400/500/600/700 instances were generated with fontTools 4.68.0 and no outline redesign; `app/src/main/assets/licenses/Manrope-OFL.txt` preserves the license. Copyright belongs to The Manrope Project Authors.
 
+
+- Development-only formatter: ktfmt0.65, Apache-2.0, pinned release/hash in `verification/format_kotlin.py`. [Source and license](https://github.com/Kotlin/ktfmt/tree/v0.65). It is not bundled into the app.

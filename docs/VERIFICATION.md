@@ -15,6 +15,12 @@
 | Physical Android 14 / API 34 | All nine native cases passed, including ATF scans, with explicit foreground-launch assistance required by OEM background-start restrictions. No security settings changed. This run precedes only the compact search-border correction; final optimized APK is subsequently installed. |
 | Artifact audit | Advisory AAB report: DEX 2.35 MB, R8 shrinking 98%, optimization 97.04%, obfuscation 97.91%; four native ABIs aligned to 16 KB. APK ELF/ZIP alignment passes; APKs lack bundle R8 metadata and retain that warning. This is tool output, not verified store policy. |
 
+## Readability and physical-validation follow-up
+
+The follow-up source now uses hash-pinned ktfmt, a more explicit dependency graph and a dedicated presentation-error mapper. Local JVM/lint/build checks pass. Four Python tests protect FrameMetrics evidence interpretation. A separate same-certificate instrumentation probe checks the actual optimized app without replacing its graph; startup and a short live-API journey have passed on the API37 emulator. Its software-rendered frame timings are not physical-device performance evidence.
+
+Fresh hosted checks, installation of the updated physical APK, the measured hardware journey and human TalkBack confirmation are still pending. The completed hosted/physical results below belong to the earlier quality delivery, not an assertion that this follow-up has finished validation.
+
 ## Hosted verification
 
 [Run 44897276762](https://github.com/navalcode/shelf-android/actions/workflows/checks.yml) passed on code commit `previous source revision`: build plus native integration and optimized cold-launch checks on API 26 and API 35. Downloaded reports confirm 32 JVM tests and nine native cases on each API, with no failures/skips, zero lint errors and an accessible search input from the QA-signed R8 APK on both APIs. The final documentation-only commit preserves that tested runtime, tests, assets, dependencies and workflow exactly.

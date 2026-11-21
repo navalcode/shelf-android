@@ -19,19 +19,40 @@ import dev.navalcode.shelf.domain.Book
 
 /** One identity in two contexts: scan the index, then read the selected work. */
 @Composable
-internal fun BookIdentity(book: Book, detail: Boolean, shared: SharedTransitionScope,
-    visibility: AnimatedVisibilityScope, modifier: Modifier = Modifier) {
+internal fun BookIdentity(
+    book: Book,
+    detail: Boolean,
+    shared: SharedTransitionScope,
+    visibility: AnimatedVisibilityScope,
+    modifier: Modifier = Modifier,
+) {
     with(shared) {
-        val identity = if (LocalMotionEnabled.current) Modifier.sharedElement(rememberSharedContentState("book:${book.id}"),
-            animatedVisibilityScope = visibility,
-            boundsTransform = { _, _ -> tween(MotionTiming.IDENTITY, easing = FastOutSlowInEasing) }) else Modifier
+        val identity =
+            if (LocalMotionEnabled.current)
+                Modifier.sharedElement(
+                    rememberSharedContentState("book:${book.id}"),
+                    animatedVisibilityScope = visibility,
+                    boundsTransform = { _, _ ->
+                        tween(MotionTiming.IDENTITY, easing = FastOutSlowInEasing)
+                    },
+                )
+            else Modifier
         Box(modifier) {
-            Column(Modifier.widthIn(max = 264.dp).then(identity), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                Text(book.title,
-                    style = MaterialTheme.typography.headlineMedium, color = MaterialTheme.colorScheme.onSurface,
-                    modifier = if (detail) Modifier.semantics { heading() } else Modifier)
-                Text(book.authors.joinToString().ifEmpty { stringResource(R.string.unknown_author) },
-                    style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Column(
+                Modifier.widthIn(max = 264.dp).then(identity),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
+                Text(
+                    book.title,
+                    style = MaterialTheme.typography.headlineMedium,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    modifier = if (detail) Modifier.semantics { heading() } else Modifier,
+                )
+                Text(
+                    book.authors.joinToString().ifEmpty { stringResource(R.string.unknown_author) },
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
             }
         }
     }

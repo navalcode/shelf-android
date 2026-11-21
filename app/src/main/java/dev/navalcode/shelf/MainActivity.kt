@@ -19,9 +19,15 @@ class MainActivity : ComponentActivity() {
         val searchBooks = (application as ShelfApplication).searchBooks
         setContent {
             ShelfTheme {
-                val model: SearchViewModel = viewModel(factory = viewModelFactory {
-                    initializer { SearchViewModel(searchBooks, createSavedStateHandle()) }
-                })
+                val model: SearchViewModel =
+                    viewModel(
+                        factory =
+                            viewModelFactory {
+                                initializer {
+                                    SearchViewModel(searchBooks, createSavedStateHandle())
+                                }
+                            },
+                    )
                 ShelfApp(model)
             }
         }

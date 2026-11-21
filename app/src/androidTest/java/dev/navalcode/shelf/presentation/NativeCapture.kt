@@ -20,15 +20,22 @@ internal class NativeCapture(private val rule: ComposeContentTestRule) {
         val source = File(instrumentation.targetContext.getExternalFilesDir(null), "$name.png")
         source.outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
         bitmap.recycle()
-        for (command in listOf("mkdir -p /sdcard/Download/shelf-test-output",
-            "cp ${source.absolutePath} /sdcard/Download/shelf-test-output/$name.png")) {
-            ParcelFileDescriptor.AutoCloseInputStream(instrumentation.uiAutomation.executeShellCommand(command)).use { it.readBytes() }
+        for (command in
+            listOf(
+                "mkdir -p /sdcard/Download/shelf-test-output",
+                "cp ${source.absolutePath} /sdcard/Download/shelf-test-output/$name.png",
+            )) {
+            ParcelFileDescriptor.AutoCloseInputStream(
+                    instrumentation.uiAutomation.executeShellCommand(command),
+                )
+                .use { it.readBytes() }
         }
     }
 
     fun transition(prefix: String, action: () -> Unit) {
         if (InstrumentationRegistry.getArguments().getString("motionCapture") != "true") {
-            action(); return
+            action()
+            return
         }
         rule.mainClock.autoAdvance = false
         try {
@@ -40,6 +47,8 @@ internal class NativeCapture(private val rule: ComposeContentTestRule) {
                 frame("$prefix-" + time.toString().padStart(3, '0'), settle = false)
                 previous = time
             }
-        } finally { rule.mainClock.autoAdvance = true }
+        } finally {
+            rule.mainClock.autoAdvance = true
+        }
     }
 }

@@ -9,7 +9,12 @@ data class Book(
     val firstPublished: Int?,
     val editionCount: Int?,
 )
-enum class ResultSource { NETWORK, CACHE }
+
+enum class ResultSource {
+    NETWORK,
+    CACHE,
+}
+
 data class SearchResult(val books: List<Book>, val source: ResultSource)
 
 /** Searches may throw SearchException; coroutine cancellation is always propagated unchanged. */
@@ -18,7 +23,8 @@ fun interface BookRepository {
 }
 
 /** Identical canonical keys reach both the API and the per-query cache. */
-fun canonicalQuery(input: String): String = input.trim().replace(Regex("\\s+"), " ").lowercase(Locale.ROOT)
+fun canonicalQuery(input: String): String =
+    input.trim().replace(Regex("\\s+"), " ").lowercase(Locale.ROOT)
 
 class SearchBooks(private val repository: BookRepository) {
     suspend operator fun invoke(input: String): SearchResult {
@@ -26,10 +32,19 @@ class SearchBooks(private val repository: BookRepository) {
         require(query.isNotEmpty() && query.length <= MAX_QUERY_LENGTH)
         return repository.search(query)
     }
-    companion object { const val MAX_QUERY_LENGTH = 120 }
+
+    companion object {
+        const val MAX_QUERY_LENGTH = 120
+    }
 }
 
 /** Stable application errors; transport and parser details belong to Data. */
-enum class SearchFailureKind { NETWORK, RATE_LIMIT, SERVICE, INVALID_DATA }
+enum class SearchFailureKind {
+    NETWORK,
+    RATE_LIMIT,
+    SERVICE,
+    INVALID_DATA,
+}
+
 class SearchException(val kind: SearchFailureKind, cause: Throwable? = null) :
     Exception(kind.name, cause)

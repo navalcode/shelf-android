@@ -13,6 +13,7 @@ Optimized native app: opening and live API search. Test-clock navigation uses a 
 Use Android Studio with **JDK 17**, Android SDK **36**, Build Tools **35.0.0** and an emulator/device on **API 26+**. Open this directory, let Gradle sync, then run `app`. No key, account, backend or secret is needed. Internet access is required on a cache miss; production uses HTTPS only.
 
 ```sh
+python3 verification/format_kotlin.py --check
 ./gradlew :app:assembleDebug
 ./gradlew :domain:test :data:test :app:testDebugUnitTest :app:lintDebug
 ./gradlew :app:connectedDebugAndroidTest  # one running emulator/device
