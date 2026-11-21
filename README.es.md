@@ -36,4 +36,4 @@ Tipografía Manrope local, recursos españoles con fallback inglés, modo oscuro
 
 Pruebas deterministas de delegación Domain, expiración exacta, claves, LRU, fallos, cancelación, contrato Retrofit con MockWebServer, debounce y respuestas tardías. Los nueve casos nativos arrancan MainActivity con el grafo real, Retrofit y caché, sustituyendo solo las respuestas HTTP. Comprueban errores, reintento, recreación, teclado, acciones accesibles y metadatos ausentes. API34+ añade comprobaciones automáticas de accesibilidad. Las suites deterministas y CI no dependen del servicio público. La sonda opcional con API real se ejecuta por separado y queda documentada en verificación.
 
-El código original se distribuye con licencia MIT. Los avisos de terceros están en [THIRD_PARTY.md](THIRD_PARTY.md).
+El código original se distribuye con licencia MIT. Los avisos de dependencias, tipografía y Gradle están en [THIRD_PARTY.md](THIRD_PARTY.md).

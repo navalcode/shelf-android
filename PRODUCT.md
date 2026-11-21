@@ -1,38 +1,29 @@
-# Product
+# Shelf
 
+Shelf searches the Open Library catalogue and displays bibliographic details in a native Android interface.
 
-## Platform
+## Search and detail
 
-android
+Users enter a title, author or subject, then open a result to inspect its author, first publication, edition count and catalogue identifier. Missing metadata is labelled explicitly. Suggestions provide starting queries without preloading fictional catalogue results.
 
-## Users
+## Behavior
 
-People searching for a book by title, author or subject. A second audience is a technical reviewer evaluating a small, runnable Kotlin/Compose exercise and its decisions.
+- Editing cancels the previous request before the 400 ms debounce and removes its visible results.
+- Each normalized query has a three-minute memory-cache entry, bounded to 20 recent queries.
+- Network requests return at most 20 works and observe a minimum interval between starts.
+- Loading, empty, invalid-data, connectivity and service failures have distinct states with appropriate recovery.
+- Back navigation retains the query; a small selected-work snapshot supports Android task restoration.
 
-## Product Purpose
+## Interface
 
-Search the public Open Library catalogue, cancel replaced requests, reuse fresh per-query results and open a bibliographic detail. Success is an understandable, responsive task and code whose behavior is supported by tests.
+Spanish resources have an English fallback. The app follows system light/dark and animation settings, supports scalable text and uses bounded single- or two-pane layouts. Title and author connect list and detail through one shared transition.
 
-## Stack
+## Implementation
 
-Existing Kotlin / Compose Android app; domain and data JVM modules, Retrofit, coroutines, memory cache, ViewModel and Navigation. Manual dependency wiring.
+Kotlin, Jetpack Compose Material 3, Navigation and ViewModel provide the Android interface. Pure JVM domain and data modules contain the use case, repository contract, Retrofit integration and cache. Dependency wiring is explicit.
 
-## Capabilities and Constraints
+The scope is two screens. Accounts, disk cache, pagination and store distribution are outside this exercise.
 
-Two screens, up to 20 works per query, three-minute memory cache, immediate cancellation before debounce and no stale query rendering. No accounts, disk cache, backend credentials or store distribution. Spanish resources and English fallback. Existing automated failure tests remain authoritative during visual changes.
+## Verification
 
-## Brand Commitments
-
-Shelf uses native Android controls, readable typography and a single shared identity between list and detail.
-
-## Evidence on Hand
-
-Working source, deterministic JVM tests, Compose journeys and actual emulator captures. Public API smoke checks are separate from synthetic test fixtures. Optimized APK cold-launch and retained-task process-loss checks supplement deterministic suites. Accessibility Test Framework/semantics checks are distinct from a full TalkBack review. Current physical-device execution and remaining limits are recorded in docs/VERIFICATION.md; no hardware benchmark or store approval is claimed.
-
-## Product Principles
-
-- Search and readable results precede presentation.
-- Cancellation changes visible state immediately.
-- Movement explains a relationship; system-disabled animations remain usable.
-- Required and optional metadata stay distinguishable.
-- Technical claims link to reproducible evidence.
+The [acceptance contract](docs/SPEC.md) maps behavior to tests. [Verification](docs/VERIFICATION.md) records executed checks, and [runtime validation](docs/RUNTIME_VALIDATION.md) documents the optimized build, screen-reader journey and rendering measurements.

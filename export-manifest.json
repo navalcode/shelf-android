@@ -14,7 +14,7 @@
     },
     {
       "path": "DESIGN.md",
-      "sha256": "b3b39b8eae11cc2073f4c702e795ccdf0b25da7e2b9a921c523dc25d75a1c36b"
+      "sha256": "b7ca4fb3db636771dbba7f2186e61353f3c48e6c338e8f21eee353dfa57bbf98"
     },
     {
       "path": "LICENSE",
@@ -22,15 +22,15 @@
     },
     {
       "path": "PRODUCT.md",
-      "sha256": "276b708b5a5a5a037cf55dd4a111d2b75c9728f4f7534d0324e3698f9cb764fb"
+      "sha256": "3ef8a3d530acb511688e839ab7546a1ac241582a93ee03e20d46e3f061af2fa4"
     },
     {
       "path": "README.es.md",
-      "sha256": "c176d1698cff17901a707855254dfde13ec45c39d0360d3efaa110f9a259bf0b"
+      "sha256": "1fc363c9ee026e4e48f7d2a25c29835f10842f196e8d9ad7900b73f16ef6a134"
     },
     {
       "path": "README.md",
-      "sha256": "10025ef6d69fec07b77624dfd4076bfea9f5a5207d958fe56a881f1eb1ac166b"
+      "sha256": "e94cc2cca89ba21db17f197b4812fa1853d4a4eefe2d030d18afffbb6f890481"
     },
     {
       "path": "THIRD_PARTY.md",
@@ -202,7 +202,7 @@
     },
     {
       "path": "docs/RUNTIME_VALIDATION.md",
-      "sha256": "7be721c04f2af2b0ce616772a79c30b75ef788ecd580f4de3bd278f0ef81a974"
+      "sha256": "ec2ac66705f8377739cb8335f3b5d64801be8dcf5f527d3f7d3398926a9ed1a5"
     },
     {
       "path": "docs/SPEC.md",
@@ -210,7 +210,7 @@
     },
     {
       "path": "docs/VERIFICATION.md",
-      "sha256": "04cc75f7ef14ddd6a915d445427dabc09fbd98ed522809bb96211c07e26c65df"
+      "sha256": "b8084523516dd90e58e9d3b0f0acce6a958a9e04d73ee7a6c6093803abdf865d"
     },
     {
       "path": "docs/evidence/emulator-frame-metrics.json",
@@ -222,7 +222,7 @@
     },
     {
       "path": "docs/images/PROVENANCE.json",
-      "sha256": "9f5c0b74bebfa14c653ddc5de870707524549be4e3c2796cab47eef0291bc5e8"
+      "sha256": "201ae02e0830862cd269c27de3b8549f950edea5280fd6879819ffec90850a63"
     },
     {
       "path": "docs/images/detail.png",

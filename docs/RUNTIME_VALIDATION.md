@@ -37,6 +37,4 @@ TalkBack 17 was enabled in the owned emulator in Spanish, with touch exploration
 
 ## Hosted checks
 
-[Run 44901113590](https://github.com/navalcode/shelf-android/actions/workflows/checks.yml) passed at attempt 1 on `previous source revision`:32 JVM tests, six evidence-parser tests, formatting/lint/build, nine native cases and external/signed optimized-startup checks on each API 26/API 35. Downloaded reports confirm no native failures or skips and matching optimized APK bytes between both inspection paths and API jobs.
-
-The preceding follow-up run 44899700421 passed at attempt 2. Its first API 35 job received Maven Central HTTP 429 resolving UTP dependencies before tests; the failed job was retried without weakening assertions. [Verification](VERIFICATION.md) records runtime identity and the subsequent documentation-only delta.
+[Android checks](https://github.com/navalcode/shelf-android/actions/workflows/checks.yml) runs formatting, unit tests, lint/build and native/optimized-startup checks on API26/API35. [Verification](VERIFICATION.md) records the latest publication result.

@@ -36,5 +36,5 @@
       "sha256": "bfbfa039882278ba6023a1b510a74fef9be5da6e626a7163902782baa8f23c00"
     }
   ],
-  "note": "Original native display captures; PNG pixel data preserved, Source metadata embedded. GIF derived only from disclosed native frames. No image generation, retouched UI, fabricated covers or employer material."
+  "note": "Original native display captures. PNG pixel data is preserved with Source metadata. The GIF uses the documented native test-clock frames."
 }

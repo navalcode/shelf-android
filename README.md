@@ -36,4 +36,4 @@ The UI has local Manrope typography, Spanish resources, English fallback, system
 
 Deterministic tests cover domain delegation, exact cache expiry, canonical keys, LRU, errors, cancellation, the real Retrofit HTTP contract via MockWebServer, debounce and late-response rejection. All nine native cases launch MainActivity with the real application graph, Retrofit and cache, replacing only HTTP responses. They cover errors, retry, activity recreation, keyboard behavior, accessible actions and missing metadata. API34+ adds automated accessibility scans. The deterministic suites and CI do not depend on the public service. The optional live-API runtime probe is separate and documented in verification.
 
-Original code is available under the MIT license. Third-party notices are in [THIRD_PARTY.md](THIRD_PARTY.md).
+Original code is available under the MIT license. Dependency, font and Gradle notices are in [THIRD_PARTY.md](THIRD_PARTY.md).

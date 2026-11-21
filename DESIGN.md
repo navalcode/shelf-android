@@ -171,7 +171,7 @@ components:
 
 Shelf is a native Compose Material 3 catalogue with cool mineral surfaces, one cobalt family and locally bundled Manrope. A tonal search panel makes the task immediately legible; open bibliographic rows support scanning and one tonal reading sheet marks the selected work.
 
-Movement connects the same title/author group across search and detail. Native controls, system Back and readable scrollable content remain the basis of interaction. `Theme.kt`, `SearchScreen.kt`, `DetailScreen.kt` and `BookIdentity.kt` define the implementation described here.
+Movement connects the same title/author group across search and detail. Native controls, system Back and readable scrollable content remain the basis of interaction. `Theme.kt`, `SearchHeader.kt`, `SearchScreen.kt`, `DetailScreen.kt` and `BookIdentity.kt` define the implementation described here.
 
 **Key Characteristics:**
 
@@ -180,7 +180,7 @@ Movement connects the same title/author group across search and detail. Native c
 - Shared title/author identity with system-aware motion.
 - Native controls, local type and drawn vector icons.
 
-Layout dimensions use Android `dp`; typography uses `sp`. Component entries record application overrides, with Material defaults for properties the app does not set.
+Layout dimensions use Android `dp`; typography uses `sp`. Component entries record application overrides, with Material 3 defaults for properties the application does not set.
 
 ## Colors
 
